@@ -1,0 +1,26 @@
+experiment_name: exp004_optimized_baseline
+version: 1
+description: >-
+  Optimization of the structured household-rule-based baseline against the real
+  public COMES-F matrix using non-negative setting weights.
+reference_source: comes_f_public_workbook_symmetrized
+optimization:
+  initial_weights:
+    home: 1.0
+    school: 1.0
+    work: 1.0
+    other: 1.0
+  bounds:
+    home: [0.05, 4.0]
+    school: [0.05, 4.0]
+    work: [0.05, 4.0]
+    other: [0.05, 4.0]
+  penalty_strength: 0.01
+  maxiter: 2000
+metrics:
+  - matrix_mae
+  - matrix_frobenius_distance
+  - age_assortativity
+  - reciprocity_gap
+outputs:
+  results_file: artifacts/outputs/exp004_optimized_baseline_results.json

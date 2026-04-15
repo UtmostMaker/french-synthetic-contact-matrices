@@ -1,0 +1,102 @@
+{
+  "experiment_name": "exp004_optimized_baseline",
+  "config_path": "experiments/configs/exp004_optimized_baseline.yaml",
+  "reference": {
+    "source": "/home/cipher/.openclaw/workspace/research/french-synthetic-contact-matrices/data/raw/comes_f/RawData_ComesF.xlsx",
+    "survey": "COMES-F",
+    "format": "xlsx-raw",
+    "doi": "10.6084/m9.figshare.1466917.v2",
+    "figshare_url": "https://figshare.com/articles/dataset/Data_file_for_Comes_F/1466917",
+    "license": "CC BY 4.0",
+    "participants": 2033,
+    "observation_days": 4066,
+    "listed_contacts": 38752,
+    "matrix_variant": "symmetrized",
+    "limitations": [
+      "Supplementary professional contacts (>20/day) are not fully reconstructed from the public workbook.",
+      "No survey re-weighting is applied in the current parser.",
+      "Symmetrization is arithmetic and does not reproduce the original population-weighted reciprocity correction."
+    ],
+    "participant_age_counts": [
+      305,
+      262,
+      160,
+      131,
+      114,
+      55,
+      53,
+      63,
+      45,
+      70,
+      92,
+      96,
+      168,
+      193,
+      110,
+      61,
+      55
+    ],
+    "row_observation_days": [
+      610,
+      524,
+      320,
+      262,
+      228,
+      110,
+      106,
+      126,
+      90,
+      140,
+      184,
+      192,
+      336,
+      386,
+      220,
+      122,
+      110
+    ]
+  },
+  "heuristic_baseline": {
+    "name": "household_rule_based",
+    "metrics": {
+      "matrix_mae": 0.35064844280259294,
+      "matrix_frobenius_distance": 8.816612305893242,
+      "age_assortativity": {
+        "diagonal_share": 0.13874051622866607,
+        "near_diagonal_share": 0.3029243694658756
+      },
+      "reciprocity_gap": 0.0
+    }
+  },
+  "optimized_baseline": {
+    "name": "optimized_household_rule_based",
+    "metrics": {
+      "matrix_mae": 0.26704160105970715,
+      "matrix_frobenius_distance": 7.173504356515678,
+      "age_assortativity": {
+        "diagonal_share": 0.16275779797171083,
+        "near_diagonal_share": 0.39415700406677145
+      },
+      "reciprocity_gap": 0.0
+    },
+    "weights": {
+      "home": 0.5459794093090091,
+      "school": 1.92063697359183,
+      "work": 2.035956071220118,
+      "other": 1.6579351801671887
+    },
+    "optimizer": {
+      "objective_name": "regularized_mse",
+      "objective_value": 0.1844588706506094,
+      "success": true,
+      "message": "Optimization terminated successfully.",
+      "iterations": 5
+    }
+  },
+  "comparison": {
+    "mae_improvement": 0.0836068417428858,
+    "frobenius_improvement": 1.6431079493775647,
+    "relative_mae_improvement_pct": 23.843494377060313
+  },
+  "interpretation": "The optimized baseline is stronger evidence than the heuristic version only if its gain persists on held-out temporal analyses. If the gain is modest, that is still useful because it quantifies how much of the baseline performance was already due to the original structure rather than arbitrary weights."
+}

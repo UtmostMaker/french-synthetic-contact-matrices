@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.mypy_cache/
+
+# Data and artifacts
+artifacts/generated/
+artifacts/logs/
+artifacts/checkpoints/
+artifacts/cache/
+artifacts/submission/
+data/raw/
+data/interim/
+data/processed/
+
+# LaTeX build outputs
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.run.xml
+*.synctex.gz
+
+# OS/editor
+.DS_Store
+.vscode/
+.idea/
+
+# Local env
+.env
+
+# Private / local-only helper scripts
+scripts/run_exp006_wrapper.sh
+scripts/send_roia_package_email.py
+
+# Local vendored runtime helpers
+.vendor/

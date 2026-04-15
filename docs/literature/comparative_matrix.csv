@@ -1,0 +1,8 @@
+id,method_family,geography,data_type,granularity,uncertainty_support,benchmark_type,compute_burden,reproducibility_level,main_limitations
+LIT-0001,Empirical diary survey,8 European countries,Diary contacts + metadata,National,Limited,Direct empirical benchmark,Low,High,Not France-specific and old.
+LIT-0002,Empirical diary survey,France,Diary contacts + metadata,National,Limited,Direct French empirical benchmark,Low,High,No fine French subnational matrix family.
+LIT-0003,Demographic transfer + Bayesian hierarchical model,152 countries,Survey + demographic + institutional data,National,Partial,External empirical comparison,Moderate,Medium-High,Transfer assumptions from limited empirical source set.
+LIT-0004,Updated demographic transfer,177 regions/countries,Survey + demographic + institutional data,Rural/urban and national,Partial,Out-of-sample empirical comparison,Moderate,Medium-High,Still coarse for France-specific territorial inference.
+LIT-0005,Synthetic population + contact inference,35 countries plus 277 subnational regions,Census + micro survey + institutional data,Subnational and national,Some via bootstrap and fit checks,Model-based comparison,Moderate-High,Medium,High data demand and implementation complexity.
+LIT-0006,Repeated empirical survey,France,Online survey contacts,National over time,Partial,Temporal empirical benchmark,Low-Moderate,Medium,Pandemic-only context and online participation bias.
+LIT-0007,Mobility-informed synthetic update,France,Mobility + behavior + empirical baseline + epidemiological outcomes,Weekly national,Implicit through model fit and comparisons,Epidemic fit comparison,Moderate,Medium-High,Pandemic-specific and not a general baseline-generation method.

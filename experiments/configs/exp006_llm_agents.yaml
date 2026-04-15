@@ -1,0 +1,29 @@
+experiment_name: exp006_llm_agents
+model:
+  name: claude-sonnet-4-6
+  fallback_models:
+    - claude-sonnet-4-6-20260415
+    - claude-sonnet-4.5
+    - claude-sonnet-4
+  base_url: https://www.omnimartapi.store/v1
+  api_key_env: OMNIMART_API_KEY
+  thinking: low
+  request_pause_seconds: 0.8
+  timeout_seconds: 90
+  force_refresh: false
+aggregation:
+  profile_weights: population_weight
+comparison:
+  coviprev_waves:
+    - vague 17 : 4-6 novembre
+    - vague 18 : 23-25 novembre
+    - vague 19 : 14-16 décembre
+    - vague 20 : 18 - 20 janvier
+    - vague 21 : 15 - 17 février
+    - vague 22 : 15 - 17 mars
+    - vague 23 : 21-23 avril
+    - vague 24 : 17-19 mai
+    - vague 25 : 21-28 juin
+    - vague 26 : 15-21 juillet
+    - vague 27 : 31 août  - 7 septembre
+    - vague 28 : 28 septembre - 5 octobre

@@ -1,0 +1,206 @@
+{
+  "experiment_name": "exp002_behavioral_layer",
+  "config_path": "experiments/configs/exp002_behavioral_layer.yaml",
+  "base_experiment": {
+    "name": "exp001_baseline_comparison",
+    "baseline": "household_rule_based",
+    "reference_source": "synthetic_placeholder_from_exp001"
+  },
+  "dry_run": true,
+  "results": [
+    {
+      "seed": 2026,
+      "base_baseline": "household_rule_based",
+      "aggregate_state": {
+        "adherence_level": 0.6499999999999999,
+        "risk_perception": 0.6075,
+        "trust_in_authorities": 0.6200000000000001,
+        "policy_regime": "baseline"
+      },
+      "aggregate_metrics": {
+        "matrix_mae": 1.2074608699192184,
+        "matrix_frobenius_distance": 34.93923388709621,
+        "age_assortativity": {
+          "diagonal_share": 0.1346600598435835,
+          "near_diagonal_share": 0.30569896079448977
+        },
+        "reciprocity_gap": 0.0
+      },
+      "evolved_state_count": 4,
+      "evolved_metrics": {
+        "matrix_mae": 1.1986107614638422,
+        "matrix_frobenius_distance": 34.70672565519484,
+        "age_assortativity": {
+          "diagonal_share": 0.13565383006932816,
+          "near_diagonal_share": 0.3078724440760649
+        },
+        "reciprocity_gap": 0.0
+      },
+      "scenarios": [
+        {
+          "name": "scenario_1",
+          "state": {
+            "adherence_level": 0.45,
+            "risk_perception": 0.4,
+            "trust_in_authorities": 0.55,
+            "policy_regime": "baseline"
+          },
+          "metrics": {
+            "matrix_mae": 1.1856575657701147,
+            "matrix_frobenius_distance": 34.379055941791165,
+            "age_assortativity": {
+              "diagonal_share": 0.13576842949453302,
+              "near_diagonal_share": 0.30827489920898626
+            },
+            "reciprocity_gap": 0.0
+          },
+          "matrix_shape": [
+            17,
+            17
+          ]
+        },
+        {
+          "name": "scenario_2",
+          "state": {
+            "adherence_level": 0.53,
+            "risk_perception": 0.46,
+            "trust_in_authorities": 0.5900000000000001,
+            "policy_regime": "mask_mandate"
+          },
+          "metrics": {
+            "matrix_mae": 1.2046801119891128,
+            "matrix_frobenius_distance": 34.87425578588431,
+            "age_assortativity": {
+              "diagonal_share": 0.13514058393842826,
+              "near_diagonal_share": 0.3066559034273738
+            },
+            "reciprocity_gap": 0.0
+          },
+          "matrix_shape": [
+            17,
+            17
+          ]
+        },
+        {
+          "name": "scenario_3",
+          "state": {
+            "adherence_level": 0.61,
+            "risk_perception": 0.52,
+            "trust_in_authorities": 0.63,
+            "policy_regime": "confinement"
+          },
+          "metrics": {
+            "matrix_mae": 1.3281474132508664,
+            "matrix_frobenius_distance": 37.68048664912016,
+            "age_assortativity": {
+              "diagonal_share": 0.12194808542580703,
+              "near_diagonal_share": 0.277167396416794
+            },
+            "reciprocity_gap": 0.0
+          },
+          "matrix_shape": [
+            17,
+            17
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 2031,
+      "base_baseline": "household_rule_based",
+      "aggregate_state": {
+        "adherence_level": 0.6499999999999999,
+        "risk_perception": 0.6075,
+        "trust_in_authorities": 0.6200000000000001,
+        "policy_regime": "baseline"
+      },
+      "aggregate_metrics": {
+        "matrix_mae": 1.2098325173472173,
+        "matrix_frobenius_distance": 34.994223974086964,
+        "age_assortativity": {
+          "diagonal_share": 0.13477378137659568,
+          "near_diagonal_share": 0.3058102167232929
+        },
+        "reciprocity_gap": 0.0
+      },
+      "evolved_state_count": 4,
+      "evolved_metrics": {
+        "matrix_mae": 1.1992534660389116,
+        "matrix_frobenius_distance": 34.7232285344657,
+        "age_assortativity": {
+          "diagonal_share": 0.13588106412319337,
+          "near_diagonal_share": 0.3082554496031755
+        },
+        "reciprocity_gap": 0.0
+      },
+      "scenarios": [
+        {
+          "name": "scenario_1",
+          "state": {
+            "adherence_level": 0.45,
+            "risk_perception": 0.4,
+            "trust_in_authorities": 0.55,
+            "policy_regime": "baseline"
+          },
+          "metrics": {
+            "matrix_mae": 1.187911285223035,
+            "matrix_frobenius_distance": 34.438363239818614,
+            "age_assortativity": {
+              "diagonal_share": 0.13589616748017758,
+              "near_diagonal_share": 0.30841212336152546
+            },
+            "reciprocity_gap": 0.0
+          },
+          "matrix_shape": [
+            17,
+            17
+          ]
+        },
+        {
+          "name": "scenario_2",
+          "state": {
+            "adherence_level": 0.53,
+            "risk_perception": 0.46,
+            "trust_in_authorities": 0.5900000000000001,
+            "policy_regime": "mask_mandate"
+          },
+          "metrics": {
+            "matrix_mae": 1.2070788651027848,
+            "matrix_frobenius_distance": 34.92978253572556,
+            "age_assortativity": {
+              "diagonal_share": 0.13525885091923975,
+              "near_diagonal_share": 0.3067740046286571
+            },
+            "reciprocity_gap": 0.0
+          },
+          "matrix_shape": [
+            17,
+            17
+          ]
+        },
+        {
+          "name": "scenario_3",
+          "state": {
+            "adherence_level": 0.61,
+            "risk_perception": 0.52,
+            "trust_in_authorities": 0.63,
+            "policy_regime": "confinement"
+          },
+          "metrics": {
+            "matrix_mae": 1.3295958735143105,
+            "matrix_frobenius_distance": 37.71478097757785,
+            "age_assortativity": {
+              "diagonal_share": 0.12194760007184174,
+              "near_diagonal_share": 0.27708223991849856
+            },
+            "reciprocity_gap": 0.0
+          },
+          "matrix_shape": [
+            17,
+            17
+          ]
+        }
+      ]
+    }
+  ]
+}

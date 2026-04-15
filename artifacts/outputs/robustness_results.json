@@ -1,0 +1,154 @@
+{
+  "source_experiment": "artifacts/outputs/exp005_calibrated_behavioral_results.json",
+  "baseline_test_metrics": {
+    "prevention_test_mae": 0.06319466973568413,
+    "contact_test_mae": 0.27358086477282256
+  },
+  "sensitivity_analysis": {
+    "home_risk_gain": {
+      "minus": {
+        "parameter_value": 0.7199909770832698,
+        "prevention_test_mae": 0.06319466973568413,
+        "contact_test_mae": 0.2738739193350609
+      },
+      "plus": {
+        "parameter_value": 0.8799889719906632,
+        "prevention_test_mae": 0.06319466973568413,
+        "contact_test_mae": 0.27328781021058407
+      }
+    },
+    "school_response_gain": {
+      "minus": {
+        "parameter_value": 0.3057938016861989,
+        "prevention_test_mae": 0.06319466973568413,
+        "contact_test_mae": 0.26789240840086087
+      },
+      "plus": {
+        "parameter_value": 0.37374797983868757,
+        "prevention_test_mae": 0.06319466973568413,
+        "contact_test_mae": 0.2792693211447841
+      }
+    },
+    "work_response_gain": {
+      "minus": {
+        "parameter_value": 0.37799999999988704,
+        "prevention_test_mae": 0.06319466973568413,
+        "contact_test_mae": 0.2690944580721916
+      },
+      "plus": {
+        "parameter_value": 0.46199999999986197,
+        "prevention_test_mae": 0.06319466973568413,
+        "contact_test_mae": 0.2780672714734534
+      }
+    },
+    "other_response_gain": {
+      "minus": {
+        "parameter_value": 0.4949999999993443,
+        "prevention_test_mae": 0.06319466973568413,
+        "contact_test_mae": 0.2659293987039786
+      },
+      "plus": {
+        "parameter_value": 0.6049999999991986,
+        "prevention_test_mae": 0.06319466973568413,
+        "contact_test_mae": 0.2812323308416664
+      }
+    },
+    "policy_confinement_scale": {
+      "minus": {
+        "parameter_value": 0.8999999999999887,
+        "prevention_test_mae": 0.06319466973568413,
+        "contact_test_mae": 0.27358086477282256
+      },
+      "plus": {
+        "parameter_value": 1.0999999999999863,
+        "prevention_test_mae": 0.06319466973568413,
+        "contact_test_mae": 0.27358086477282256
+      }
+    },
+    "policy_mask_scale": {
+      "minus": {
+        "parameter_value": 0.8999999999998914,
+        "prevention_test_mae": 0.06319466973568413,
+        "contact_test_mae": 0.2720042253127537
+      },
+      "plus": {
+        "parameter_value": 1.0999999999998673,
+        "prevention_test_mae": 0.06319466973568413,
+        "contact_test_mae": 0.27515750423289137
+      }
+    },
+    "prevention_weight_adherence": {
+      "minus": {
+        "parameter_value": 0.43993235388185586,
+        "prevention_test_mae": 0.0717456489355722,
+        "contact_test_mae": 0.27358086477282256
+      },
+      "plus": {
+        "parameter_value": 0.537695099188935,
+        "prevention_test_mae": 0.059331622172037204,
+        "contact_test_mae": 0.27358086477282256
+      }
+    },
+    "prevention_weight_risk": {
+      "minus": {
+        "parameter_value": 0.39651608773448266,
+        "prevention_test_mae": 0.06721286420888936,
+        "contact_test_mae": 0.27358086477282256
+      },
+      "plus": {
+        "parameter_value": 0.4846307738977011,
+        "prevention_test_mae": 0.05940585614293126,
+        "contact_test_mae": 0.27358086477282256
+      }
+    }
+  },
+  "ablation_study": {
+    "remove_home_behavior": {
+      "prevention_test_mae": 0.06319466973568413,
+      "contact_test_mae": 0.27651120803938456,
+      "prevention_direction_agreement": 0.5,
+      "contact_direction_agreement": 1.0
+    },
+    "remove_school_behavior": {
+      "prevention_test_mae": 0.06319466973568413,
+      "contact_test_mae": 0.2307074947514851,
+      "prevention_direction_agreement": 0.5,
+      "contact_direction_agreement": 1.0
+    },
+    "remove_work_behavior": {
+      "prevention_test_mae": 0.06319466973568413,
+      "contact_test_mae": 0.2340807092596891,
+      "prevention_direction_agreement": 0.5,
+      "contact_direction_agreement": 1.0
+    },
+    "remove_other_behavior": {
+      "prevention_test_mae": 0.06319466973568413,
+      "contact_test_mae": 0.20456000820443282,
+      "prevention_direction_agreement": 0.5,
+      "contact_direction_agreement": 1.0
+    },
+    "remove_policy_effects": {
+      "prevention_test_mae": 0.05119466973605789,
+      "contact_test_mae": 0.26897659962967574,
+      "prevention_direction_agreement": 0.5,
+      "contact_direction_agreement": 1.0
+    }
+  },
+  "bootstrap_confidence_intervals": {
+    "prevention_test_mae": {
+      "mean": 0.06322437559272526,
+      "ci_lower": 0.032986769111196225,
+      "ci_upper": 0.09307812995535249
+    },
+    "contact_test_mae": {
+      "mean": 0.2739217034581194,
+      "ci_lower": 0.25007474854545675,
+      "ci_upper": 0.2970869810001884
+    }
+  },
+  "notes": [
+    "Sensitivity is evaluated on held-out periods only.",
+    "Bootstrap intervals are empirical percentile intervals over resampled held-out observations.",
+    "Because the held-out SocialCov test set has only two periods, the contact-side intervals are necessarily wide and should be interpreted cautiously."
+  ]
+}

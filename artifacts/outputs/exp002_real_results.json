@@ -1,0 +1,275 @@
+{
+  "experiment_name": "exp002_behavioral_layer",
+  "config_path": "experiments/configs/exp002_behavioral_layer.yaml",
+  "base_experiment": {
+    "name": "exp001_baseline_comparison",
+    "baseline": "household_rule_based",
+    "reference_source": "comes_f_public_workbook_symmetrized"
+  },
+  "dry_run": true,
+  "reference": {
+    "source": "/home/cipher/.openclaw/workspace/research/french-synthetic-contact-matrices/data/raw/comes_f/RawData_ComesF.xlsx",
+    "survey": "COMES-F",
+    "format": "xlsx-raw",
+    "doi": "10.6084/m9.figshare.1466917.v2",
+    "figshare_url": "https://figshare.com/articles/dataset/Data_file_for_Comes_F/1466917",
+    "license": "CC BY 4.0",
+    "participants": 2033,
+    "observation_days": 4066,
+    "listed_contacts": 38752,
+    "matrix_variant": "symmetrized",
+    "limitations": [
+      "Supplementary professional contacts (>20/day) are not fully reconstructed from the public workbook.",
+      "No survey re-weighting is applied in the current parser.",
+      "Symmetrization is arithmetic and does not reproduce the original population-weighted reciprocity correction."
+    ],
+    "participant_age_counts": [
+      305,
+      262,
+      160,
+      131,
+      114,
+      55,
+      53,
+      63,
+      45,
+      70,
+      92,
+      96,
+      168,
+      193,
+      110,
+      61,
+      55
+    ],
+    "row_observation_days": [
+      610,
+      524,
+      320,
+      262,
+      228,
+      110,
+      106,
+      126,
+      90,
+      140,
+      184,
+      192,
+      336,
+      386,
+      220,
+      122,
+      110
+    ]
+  },
+  "results": [
+    {
+      "seed": 2026,
+      "base_baseline": "household_rule_based",
+      "aggregate_state": {
+        "adherence_level": 0.6499999999999999,
+        "risk_perception": 0.6075,
+        "trust_in_authorities": 0.6200000000000001,
+        "policy_regime": "risk_relaxation"
+      },
+      "aggregate_metrics": {
+        "matrix_mae": 0.3608535364072258,
+        "matrix_frobenius_distance": 9.36676338221817,
+        "age_assortativity": {
+          "diagonal_share": 0.13731429282036606,
+          "near_diagonal_share": 0.29896850823697696
+        },
+        "reciprocity_gap": 0.0
+      },
+      "evolved_state_count": 4,
+      "evolved_metrics": {
+        "matrix_mae": 0.35854145913124486,
+        "matrix_frobenius_distance": 9.237291445535574,
+        "age_assortativity": {
+          "diagonal_share": 0.13818830106776503,
+          "near_diagonal_share": 0.300917531293795
+        },
+        "reciprocity_gap": 0.0
+      },
+      "scenarios": [
+        {
+          "name": "scenario_1",
+          "state": {
+            "adherence_level": 0.45,
+            "risk_perception": 0.4,
+            "trust_in_authorities": 0.55,
+            "policy_regime": "baseline"
+          },
+          "metrics": {
+            "matrix_mae": 0.3580534564274753,
+            "matrix_frobenius_distance": 9.189877223135298,
+            "age_assortativity": {
+              "diagonal_share": 0.13793668649042856,
+              "near_diagonal_share": 0.3004392255415253
+            },
+            "reciprocity_gap": 0.0
+          },
+          "matrix_shape": [
+            17,
+            17
+          ]
+        },
+        {
+          "name": "scenario_2",
+          "state": {
+            "adherence_level": 0.53,
+            "risk_perception": 0.46,
+            "trust_in_authorities": 0.5900000000000001,
+            "policy_regime": "mask_mandate"
+          },
+          "metrics": {
+            "matrix_mae": 0.3627201735421818,
+            "matrix_frobenius_distance": 9.411171002720351,
+            "age_assortativity": {
+              "diagonal_share": 0.13743779244280915,
+              "near_diagonal_share": 0.2990296509490634
+            },
+            "reciprocity_gap": 0.0
+          },
+          "matrix_shape": [
+            17,
+            17
+          ]
+        },
+        {
+          "name": "scenario_3",
+          "state": {
+            "adherence_level": 0.61,
+            "risk_perception": 0.52,
+            "trust_in_authorities": 0.63,
+            "policy_regime": "confinement"
+          },
+          "metrics": {
+            "matrix_mae": 0.41347046159657086,
+            "matrix_frobenius_distance": 11.097984514667058,
+            "age_assortativity": {
+              "diagonal_share": 0.12608800044235785,
+              "near_diagonal_share": 0.27277193136116
+            },
+            "reciprocity_gap": 0.0
+          },
+          "matrix_shape": [
+            17,
+            17
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 2031,
+      "base_baseline": "household_rule_based",
+      "aggregate_state": {
+        "adherence_level": 0.6499999999999999,
+        "risk_perception": 0.6075,
+        "trust_in_authorities": 0.6200000000000001,
+        "policy_regime": "risk_relaxation"
+      },
+      "aggregate_metrics": {
+        "matrix_mae": 0.3608535364072258,
+        "matrix_frobenius_distance": 9.36676338221817,
+        "age_assortativity": {
+          "diagonal_share": 0.13731429282036606,
+          "near_diagonal_share": 0.29896850823697696
+        },
+        "reciprocity_gap": 0.0
+      },
+      "evolved_state_count": 4,
+      "evolved_metrics": {
+        "matrix_mae": 0.3579863338101674,
+        "matrix_frobenius_distance": 9.215191377484379,
+        "age_assortativity": {
+          "diagonal_share": 0.13826381484645506,
+          "near_diagonal_share": 0.30112107309473607
+        },
+        "reciprocity_gap": 0.0
+      },
+      "scenarios": [
+        {
+          "name": "scenario_1",
+          "state": {
+            "adherence_level": 0.45,
+            "risk_perception": 0.4,
+            "trust_in_authorities": 0.55,
+            "policy_regime": "baseline"
+          },
+          "metrics": {
+            "matrix_mae": 0.3580534564274753,
+            "matrix_frobenius_distance": 9.189877223135298,
+            "age_assortativity": {
+              "diagonal_share": 0.13793668649042856,
+              "near_diagonal_share": 0.3004392255415253
+            },
+            "reciprocity_gap": 0.0
+          },
+          "matrix_shape": [
+            17,
+            17
+          ]
+        },
+        {
+          "name": "scenario_2",
+          "state": {
+            "adherence_level": 0.53,
+            "risk_perception": 0.46,
+            "trust_in_authorities": 0.5900000000000001,
+            "policy_regime": "mask_mandate"
+          },
+          "metrics": {
+            "matrix_mae": 0.3627201735421818,
+            "matrix_frobenius_distance": 9.411171002720351,
+            "age_assortativity": {
+              "diagonal_share": 0.13743779244280915,
+              "near_diagonal_share": 0.2990296509490634
+            },
+            "reciprocity_gap": 0.0
+          },
+          "matrix_shape": [
+            17,
+            17
+          ]
+        },
+        {
+          "name": "scenario_3",
+          "state": {
+            "adherence_level": 0.61,
+            "risk_perception": 0.52,
+            "trust_in_authorities": 0.63,
+            "policy_regime": "confinement"
+          },
+          "metrics": {
+            "matrix_mae": 0.41347046159657086,
+            "matrix_frobenius_distance": 11.097984514667058,
+            "age_assortativity": {
+              "diagonal_share": 0.12608800044235785,
+              "near_diagonal_share": 0.27277193136116
+            },
+            "reciprocity_gap": 0.0
+          },
+          "matrix_shape": [
+            17,
+            17
+          ]
+        }
+      ]
+    }
+  ],
+  "comparison_to_placeholder": {
+    "available": true,
+    "source": "artifacts/outputs/exp002_results.json",
+    "deltas": {
+      "2026": {
+        "delta_aggregate_mae": -0.8466073335119926,
+        "delta_evolved_mae": -0.8400693023325974
+      },
+      "2031": {
+        "delta_aggregate_mae": -0.8489789809399915,
+        "delta_evolved_mae": -0.8412671322287442
+      }
+    }
+  }
+}

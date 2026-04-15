@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+title: "French Synthetic Contact Matrices"
+message: "If you use this repository, please cite the manuscript and repository metadata."
+type: software
+authors:
+  - family-names: "G"
+    given-names: "B"
+repository-code: "https://github.com/UtmostMaker/french-synthetic-contact-matrices"
+license: "MIT"
+abstract: >
+  Reproducible research repository for generating, evaluating, and extending
+  French synthetic contact matrices with transparent structural and behavioral
+  components.
+keywords:
+  - computational epidemiology
+  - synthetic contact matrices
+  - France
+  - behavioral modeling
+  - social simulation

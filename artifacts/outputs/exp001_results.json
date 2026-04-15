@@ -1,0 +1,58 @@
+{
+  "experiment_name": "exp001_baseline_comparison",
+  "config_path": "experiments/configs/exp001_baseline_comparison.yaml",
+  "seed": 2026,
+  "reference": {
+    "name": "comesf_placeholder",
+    "shape": [
+      17,
+      17
+    ],
+    "source": "synthetic in-memory placeholder"
+  },
+  "results": [
+    {
+      "name": "demographic_scaling",
+      "seed": 2026,
+      "matrix_shape": [
+        17,
+        17
+      ],
+      "metrics": {
+        "matrix_mae": 36.401497459365935,
+        "matrix_frobenius_distance": 1077.455332288557,
+        "age_assortativity": {
+          "diagonal_share": 0.24249061530374896,
+          "near_diagonal_share": 0.5664509485430886
+        },
+        "reciprocity_gap": 11.038418791656403
+      },
+      "notes": {
+        "status": "implemented-minimal",
+        "assumption": "reweights an existing contact template by target population age structure"
+      }
+    },
+    {
+      "name": "household_rule_based",
+      "seed": 2026,
+      "matrix_shape": [
+        17,
+        17
+      ],
+      "metrics": {
+        "matrix_mae": 1.146656114632624,
+        "matrix_frobenius_distance": 33.32844954056121,
+        "age_assortativity": {
+          "diagonal_share": 0.13680000431014014,
+          "near_diagonal_share": 0.3111647795096969
+        },
+        "reciprocity_gap": 0.0
+      },
+      "notes": {
+        "status": "implemented-rule-based",
+        "assumption": "Uses fixed French-style household size priors plus heuristic school/work participation curves over evenly spaced age bins.",
+        "todo": "TODO: replace generic household priors with directly harmonized INSEE distributions once the target age-bin schema is fixed."
+      }
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+Objet : Préparation du dossier de soumission ROIA
+
+Bonjour,
+
+Je t’envoie en pièces jointes le dossier actuellement prêt pour une soumission à la Revue Ouverte d’Intelligence Artificielle (ROIA).
+
+Le package contient :
+- le manuscrit compilé en PDF ;
+- les sources LaTeX ;
+- la bibliographie ;
+- les figures ;
+- une checklist de soumission.
+
+Positionnement scientifique actuel :
+- un pipeline reproductible de matrices de contact synthétiques pour la France, validé sur COMES-F ;
+- une extension comportementale temporelle, d’abord calibrée sur CoviPrev et SocialCov ;
+- une analyse exploratoire par agents LLM, avec un angle SHS sur les écarts de réponse entre profils socio-démographiques.
+
+Point important :
+- la partie la plus défendable du papier reste aujourd’hui le socle structurel validé empiriquement ;
+- la couche comportementale et la couche agents LLM sont présentées de manière prudente, comme modules explicatifs et exploratoires, avec limites explicites.
+
+Avant tout envoi à la revue, il reste utile de faire une dernière relecture ciblée sur :
+- la formulation exacte de la contribution ;
+- le ton de certaines limites ;
+- les métadonnées finales auteurs / affiliations / remerciements.
+
+Si tu veux, on peut ensuite préparer ensemble la version finale d’envoi à ROIA.
+
+Bien à toi,
+Cipher

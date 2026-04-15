@@ -1,0 +1,33 @@
+experiment_name: exp001_baseline_comparison
+version: 1
+description: >-
+  Minimal baseline benchmark comparing demographic scaling and the
+  household-aware rule-based generator against a placeholder COMES-F
+  reference matrix.
+reference:
+  name: comesf_placeholder
+  source: data/reference/comesf_placeholder.npy
+  notes: "TODO: replace with harmonized COMES-F matrix once the binning pipeline is frozen."
+inputs:
+  population_by_age: data/processed/population_by_age_france.npy
+  home_matrix: data/processed/templates/home_matrix_placeholder.npy
+  school_matrix: data/processed/templates/school_matrix_placeholder.npy
+  work_matrix: data/processed/templates/work_matrix_placeholder.npy
+  other_matrix: data/processed/templates/other_matrix_placeholder.npy
+baselines:
+  - name: demographic_scaling
+    builder_method: demographic_scaling
+  - name: household_rule_based
+    builder_method: household_rule_based
+metrics:
+  - matrix_mae
+  - matrix_frobenius_distance
+  - age_assortativity
+  - reciprocity_gap
+seeds:
+  - 2026
+outputs:
+  run_dir: artifacts/experiments/exp001_baseline_comparison
+  predictions_dir: artifacts/experiments/exp001_baseline_comparison/predictions
+  metrics_file: artifacts/experiments/exp001_baseline_comparison/metrics.json
+  summary_file: artifacts/experiments/exp001_baseline_comparison/summary.md

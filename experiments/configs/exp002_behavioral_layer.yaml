@@ -1,0 +1,49 @@
+experiment_name: exp002_behavioral_layer
+version: 1
+description: >-
+  Behavioral adherence scenarios layered on top of the household-aware
+  rule-based baseline, using bounded OASIS-inspired aggregate states.
+base_experiment:
+  name: exp001_baseline_comparison
+  baseline: household_rule_based
+  reference_source: synthetic_placeholder_from_exp001
+states:
+  - name: prudent_baseline
+    adherence_level: 0.62
+    risk_perception: 0.55
+    trust_in_authorities: 0.68
+    policy_regime: baseline
+  - name: precautionary_masking
+    adherence_level: 0.76
+    risk_perception: 0.71
+    trust_in_authorities: 0.73
+    policy_regime: mask_mandate
+  - name: strict_confinement
+    adherence_level: 0.84
+    risk_perception: 0.88
+    trust_in_authorities: 0.66
+    policy_regime: confinement
+  - name: relaxed_reopening
+    adherence_level: 0.38
+    risk_perception: 0.29
+    trust_in_authorities: 0.41
+    policy_regime: risk_relaxation
+scenario_generation:
+  enabled: true
+  dry_run: true
+  scenario_count: 3
+policy_regimes:
+  - baseline
+  - mask_mandate
+  - confinement
+  - risk_relaxation
+metrics:
+  - matrix_mae
+  - matrix_frobenius_distance
+  - age_assortativity
+  - reciprocity_gap
+seeds:
+  - 2026
+  - 2031
+outputs:
+  results_file: artifacts/outputs/exp002_results.json

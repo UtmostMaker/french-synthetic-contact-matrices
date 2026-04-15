@@ -1,0 +1,51 @@
+experiment_name: exp005_calibrated_behavioral
+version: 1
+description: >-
+  Calibration of the bounded behavioral layer against French CoviPrev and
+  SocialCov time series with chronological train/test evaluation.
+base_experiment:
+  baseline: optimized_household_rule_based
+inputs:
+  coviprev_file: data/interim/coviprev_behavior_france.csv
+  socialcov_file: data/interim/socialcov_contacts_periods.csv
+  policy_file: data/interim/policy_timeline_france.csv
+split:
+  train_end_date: 2021-04-30
+simulation:
+  start_date: 2020-12-16
+  end_date: 2022-05-29
+  step_days: 7
+  initial_state:
+    adherence_level: 0.84
+    risk_perception: 0.78
+    trust_in_authorities: 0.64
+    policy_regime: confinement
+  adaptation_rate: 0.18
+  adherence_fatigue_per_step: 0.006
+  risk_fatigue_per_step: 0.003
+  trust_fatigue_per_step: 0.002
+  policy_targets:
+    baseline:
+      adherence_level: 0.48
+      risk_perception: 0.35
+      trust_in_authorities: 0.52
+    mask_mandate:
+      adherence_level: 0.72
+      risk_perception: 0.61
+      trust_in_authorities: 0.58
+    confinement:
+      adherence_level: 0.86
+      risk_perception: 0.82
+      trust_in_authorities: 0.56
+    risk_relaxation:
+      adherence_level: 0.57
+      risk_perception: 0.42
+      trust_in_authorities: 0.50
+calibration:
+  regularization_strength: 0.01
+  maxiter: 2500
+comparison:
+  static_prevention_level: 0.751965
+  static_contact_level: 1.0
+outputs:
+  results_file: artifacts/outputs/exp005_calibrated_behavioral_results.json

@@ -1,0 +1,58 @@
+experiment_name: exp003_time_series_behavioral
+version: 1
+description: >-
+  Policy-driven time-series validation of the bounded behavioral layer against
+  French CoviPrev preventive-behavior waves and SocialCov contact-change periods.
+base_experiment:
+  name: exp001_baseline_comparison
+  baseline: household_rule_based
+  reference_source: comes_f_public_workbook_symmetrized
+inputs:
+  coviprev_file: data/interim/coviprev_behavior_france.csv
+  socialcov_file: data/interim/socialcov_contacts_periods.csv
+  policy_file: data/interim/policy_timeline_france.csv
+simulation:
+  start_date: 2020-11-04
+  end_date: 2022-05-29
+  step_days: 7
+  initial_state:
+    adherence_level: 0.84
+    risk_perception: 0.78
+    trust_in_authorities: 0.64
+    policy_regime: confinement
+  adaptation_rate: 0.18
+  adherence_fatigue_per_step: 0.006
+  risk_fatigue_per_step: 0.003
+  trust_fatigue_per_step: 0.002
+  policy_targets:
+    baseline:
+      adherence_level: 0.48
+      risk_perception: 0.35
+      trust_in_authorities: 0.52
+    mask_mandate:
+      adherence_level: 0.72
+      risk_perception: 0.61
+      trust_in_authorities: 0.58
+    confinement:
+      adherence_level: 0.86
+      risk_perception: 0.82
+      trust_in_authorities: 0.56
+    risk_relaxation:
+      adherence_level: 0.57
+      risk_perception: 0.42
+      trust_in_authorities: 0.50
+  prevention_score_weights:
+    adherence_level: 0.5
+    risk_perception: 0.3
+    trust_in_authorities: 0.2
+comparison:
+  static_prevention_level: 0.751965
+  static_contact_level: 1.0
+metrics:
+  - series_mae
+  - trend_direction_agreement
+  - peak_timing_accuracy
+outputs:
+  results_file: artifacts/outputs/exp003_results.json
+  preventive_figure: manuscript/figures/exp003_preventive_behavior_timeseries.png
+  contact_figure: manuscript/figures/exp003_contact_changes_periods.png

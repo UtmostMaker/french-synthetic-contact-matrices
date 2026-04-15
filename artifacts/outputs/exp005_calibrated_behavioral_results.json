@@ -1,0 +1,318 @@
+{
+  "experiment_name": "exp005_calibrated_behavioral",
+  "config_path": "experiments/configs/exp005_calibrated_behavioral.yaml",
+  "reference": {
+    "source": "/home/cipher/.openclaw/workspace/research/french-synthetic-contact-matrices/data/raw/comes_f/RawData_ComesF.xlsx",
+    "survey": "COMES-F",
+    "format": "xlsx-raw",
+    "doi": "10.6084/m9.figshare.1466917.v2",
+    "figshare_url": "https://figshare.com/articles/dataset/Data_file_for_Comes_F/1466917",
+    "license": "CC BY 4.0",
+    "participants": 2033,
+    "observation_days": 4066,
+    "listed_contacts": 38752,
+    "matrix_variant": "symmetrized",
+    "limitations": [
+      "Supplementary professional contacts (>20/day) are not fully reconstructed from the public workbook.",
+      "No survey re-weighting is applied in the current parser.",
+      "Symmetrization is arithmetic and does not reproduce the original population-weighted reciprocity correction."
+    ],
+    "participant_age_counts": [
+      305,
+      262,
+      160,
+      131,
+      114,
+      55,
+      53,
+      63,
+      45,
+      70,
+      92,
+      96,
+      168,
+      193,
+      110,
+      61,
+      55
+    ],
+    "row_observation_days": [
+      610,
+      524,
+      320,
+      262,
+      228,
+      110,
+      106,
+      126,
+      90,
+      140,
+      184,
+      192,
+      336,
+      386,
+      220,
+      122,
+      110
+    ]
+  },
+  "base_contact_level": 9.099137861818857,
+  "split": {
+    "train_end_date": "2021-04-30",
+    "prevention_train_labels": [
+      "vague 17 : 4-6 novembre",
+      "vague 18 : 23-25 novembre",
+      "vague 19 : 14-16 décembre",
+      "vague 20 : 18 - 20 janvier",
+      "vague 21 : 15 - 17 février",
+      "vague 22 : 15 - 17 mars",
+      "vague 23 : 21-23 avril"
+    ],
+    "prevention_test_labels": [
+      "vague 24 : 17-19 mai",
+      "vague 25 : 21-28 juin",
+      "vague 26 : 15-21 juillet",
+      "vague 27 : 31 août  - 7 septembre",
+      "vague 28 : 28 septembre - 5 octobre"
+    ],
+    "contact_train_labels": [
+      "socialcov_period_1",
+      "socialcov_period_2",
+      "socialcov_period_3",
+      "socialcov_period_4"
+    ],
+    "contact_test_labels": [
+      "socialcov_period_5",
+      "socialcov_period_6"
+    ]
+  },
+  "calibration": {
+    "parameters": {
+      "home_risk_gain": 0.7999899745369664,
+      "home_adherence_gain": 6.242294665998763e-06,
+      "school_response_gain": 0.3397708907624432,
+      "work_response_gain": 0.4199999999998745,
+      "other_response_gain": 0.5499999999992714,
+      "school_trust_penalty": 0.0999999999990213,
+      "work_trust_penalty": 0.0600000000007113,
+      "other_adherence_penalty": 0.08000000000008826,
+      "policy_mask_scale": 0.9999999999998793,
+      "policy_confinement_scale": 0.9999999999999875,
+      "policy_relaxation_scale": 0.9999999999999959,
+      "prevention_weight_adherence": 0.4888137265353954,
+      "prevention_weight_risk": 0.44057343081609185,
+      "prevention_weight_trust": 3.788755384434871e-17,
+      "policy_bonus_baseline": -0.01999999999978661,
+      "policy_bonus_mask_mandate": 0.014999999999185366,
+      "policy_bonus_confinement": -0.0366349881192412,
+      "policy_bonus_risk_relaxation": -0.009999999999920158
+    },
+    "optimization_success": true,
+    "optimization_message": "Optimization terminated successfully.",
+    "objective_value": 0.12691259538240757,
+    "iterations": 6,
+    "train_metrics": {
+      "prevention_mae": 0.018521234987260438,
+      "prevention_direction_agreement": 0.6666666666666666,
+      "contact_mae": 0.10570383565643329,
+      "contact_direction_agreement": 0.0
+    }
+  },
+  "preventive_behavior": {
+    "records": [
+      {
+        "label": "vague 17 : 4-6 novembre",
+        "date": "2020-11-05",
+        "observed": 0.7519648189309843,
+        "predicted_default": 0.772342,
+        "predicted_calibrated": 0.7423044348959688
+      },
+      {
+        "label": "vague 18 : 23-25 novembre",
+        "date": "2020-11-24",
+        "observed": 0.7534747112168066,
+        "predicted_default": 0.772342,
+        "predicted_calibrated": 0.7423044348959688
+      },
+      {
+        "label": "vague 19 : 14-16 décembre",
+        "date": "2020-12-15",
+        "observed": 0.7113519520280567,
+        "predicted_default": 0.772342,
+        "predicted_calibrated": 0.7423044348959688
+      },
+      {
+        "label": "vague 20 : 18 - 20 janvier",
+        "date": "2021-01-19",
+        "observed": 0.6937388936742194,
+        "predicted_default": 0.6988772335282475,
+        "predicted_calibrated": 0.6627920041192433
+      },
+      {
+        "label": "vague 21 : 15 - 17 février",
+        "date": "2021-02-16",
+        "observed": 0.6092461770504292,
+        "predicted_default": 0.673278227119194,
+        "predicted_calibrated": 0.6357294956112879
+      },
+      {
+        "label": "vague 22 : 15 - 17 mars",
+        "date": "2021-03-16",
+        "observed": 0.6024617592122955,
+        "predicted_default": 0.6607718804635047,
+        "predicted_calibrated": 0.6228958573263729
+      },
+      {
+        "label": "vague 23 : 21-23 avril",
+        "date": "2021-04-22",
+        "observed": 0.633002474148587,
+        "predicted_default": 0.724768022335399,
+        "predicted_calibrated": 0.6330012786914416
+      },
+      {
+        "label": "vague 24 : 17-19 mai",
+        "date": "2021-05-18",
+        "observed": 0.5987326572230949,
+        "predicted_default": 0.6031238424115802,
+        "predicted_calibrated": 0.5693759748365373
+      },
+      {
+        "label": "vague 25 : 21-28 juin",
+        "date": "2021-06-24",
+        "observed": 0.5848468238098866,
+        "predicted_default": 0.5270340620302502,
+        "predicted_calibrated": 0.48450479913262023
+      },
+      {
+        "label": "vague 26 : 15-21 juillet",
+        "date": "2021-07-18",
+        "observed": 0.5575025584433095,
+        "predicted_default": 0.5006398545072336,
+        "predicted_calibrated": 0.4555383317419453
+      },
+      {
+        "label": "vague 27 : 31 août  - 7 septembre",
+        "date": "2021-09-03",
+        "observed": 0.5235799999999999,
+        "predicted_default": 0.5849753396110576,
+        "predicted_calibrated": 0.5454900658696334
+      },
+      {
+        "label": "vague 28 : 28 septembre - 5 octobre",
+        "date": "2021-10-01",
+        "observed": 0.517647504096892,
+        "predicted_default": 0.6170869753806958,
+        "predicted_calibrated": 0.580047853140491
+      }
+    ],
+    "train_metrics_default": {
+      "series_mae": 0.045640082454995214,
+      "trend_direction_agreement": 0.6666666666666666,
+      "peak_timing_accuracy": 0.5,
+      "peak_timing_error": 1
+    },
+    "train_metrics_calibrated": {
+      "series_mae": 0.018521234987260438,
+      "trend_direction_agreement": 0.6666666666666666,
+      "peak_timing_accuracy": 0.5,
+      "peak_timing_error": 1
+    },
+    "test_metrics_default": {
+      "series_mae": 0.055980292359811855,
+      "trend_direction_agreement": 0.5,
+      "peak_timing_accuracy": 0.2,
+      "peak_timing_error": 4
+    },
+    "test_metrics_calibrated": {
+      "series_mae": 0.06319466973568413,
+      "trend_direction_agreement": 0.5,
+      "peak_timing_accuracy": 0.2,
+      "peak_timing_error": 4
+    },
+    "test_metrics_static": {
+      "series_mae": 0.19550309128536342,
+      "trend_direction_agreement": 0.0,
+      "peak_timing_accuracy": 1.0,
+      "peak_timing_error": 0
+    }
+  },
+  "contact_changes": {
+    "records": [
+      {
+        "label": "socialcov_period_1",
+        "date": "2020-06-15",
+        "observed": 0.8640952256353813,
+        "predicted_default": 0.7307911751481426,
+        "predicted_calibrated": 0.8072430135337324
+      },
+      {
+        "label": "socialcov_period_2",
+        "date": "2020-09-15",
+        "observed": 0.9472595854272997,
+        "predicted_default": 0.7307911751481426,
+        "predicted_calibrated": 0.8072430135337324
+      },
+      {
+        "label": "socialcov_period_3",
+        "date": "2020-10-20",
+        "observed": 0.807242996991862,
+        "predicted_default": 0.7307911751481426,
+        "predicted_calibrated": 0.8072430135337324
+      },
+      {
+        "label": "socialcov_period_4",
+        "date": "2020-11-10",
+        "observed": 0.5812964714450859,
+        "predicted_default": 0.7307911751481426,
+        "predicted_calibrated": 0.8072430135337324
+      },
+      {
+        "label": "socialcov_period_5",
+        "date": "2021-06-25",
+        "observed": 1.1271760882922186,
+        "predicted_default": 0.8518322386063629,
+        "predicted_calibrated": 0.8771013397467619
+      },
+      {
+        "label": "socialcov_period_6",
+        "date": "2021-10-01",
+        "observed": 1.1140107550916298,
+        "predicted_default": 0.7783955168797283,
+        "predicted_calibrated": 0.8169237740914415
+      }
+    ],
+    "train_metrics_default": {
+      "series_mae": 0.14392974657829297,
+      "trend_direction_agreement": 0.0,
+      "peak_timing_accuracy": 0.5,
+      "peak_timing_error": 1
+    },
+    "train_metrics_calibrated": {
+      "series_mae": 0.10570383565643329,
+      "trend_direction_agreement": 0.0,
+      "peak_timing_accuracy": 0.5,
+      "peak_timing_error": 1
+    },
+    "test_metrics_default": {
+      "series_mae": 0.3054795439488786,
+      "trend_direction_agreement": 1.0,
+      "peak_timing_accuracy": 1.0,
+      "peak_timing_error": 0
+    },
+    "test_metrics_calibrated": {
+      "series_mae": 0.27358086477282256,
+      "trend_direction_agreement": 1.0,
+      "peak_timing_accuracy": 1.0,
+      "peak_timing_error": 0
+    },
+    "test_metrics_static": {
+      "series_mae": 0.12059342169192422,
+      "trend_direction_agreement": 0.0,
+      "peak_timing_accuracy": 1.0,
+      "peak_timing_error": 0
+    }
+  },
+  "assessment": {
+    "honest_summary": "The calibration is only convincing if held-out MAE improves relative to both the uncalibrated layer and the static benchmark. If test performance degrades while train performance improves, that is evidence of overfitting rather than added explanatory value."
+  }
+}

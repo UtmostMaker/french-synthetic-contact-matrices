@@ -1,0 +1,129 @@
+{
+  "experiment_name": "exp001_baseline_comparison",
+  "config_path": "experiments/configs/exp001_baseline_comparison.yaml",
+  "seed": 2026,
+  "reference": {
+    "name": "comes_f_public_workbook_symmetrized",
+    "shape": [
+      17,
+      17
+    ],
+    "source": "data/raw/comes_f/RawData_ComesF.xlsx",
+    "metadata": {
+      "source": "/home/cipher/.openclaw/workspace/research/french-synthetic-contact-matrices/data/raw/comes_f/RawData_ComesF.xlsx",
+      "survey": "COMES-F",
+      "format": "xlsx-raw",
+      "doi": "10.6084/m9.figshare.1466917.v2",
+      "figshare_url": "https://figshare.com/articles/dataset/Data_file_for_Comes_F/1466917",
+      "license": "CC BY 4.0",
+      "participants": 2033,
+      "observation_days": 4066,
+      "listed_contacts": 38752,
+      "matrix_variant": "symmetrized",
+      "limitations": [
+        "Supplementary professional contacts (>20/day) are not fully reconstructed from the public workbook.",
+        "No survey re-weighting is applied in the current parser.",
+        "Symmetrization is arithmetic and does not reproduce the original population-weighted reciprocity correction."
+      ],
+      "participant_age_counts": [
+        305,
+        262,
+        160,
+        131,
+        114,
+        55,
+        53,
+        63,
+        45,
+        70,
+        92,
+        96,
+        168,
+        193,
+        110,
+        61,
+        55
+      ],
+      "row_observation_days": [
+        610,
+        524,
+        320,
+        262,
+        228,
+        110,
+        106,
+        126,
+        90,
+        140,
+        184,
+        192,
+        336,
+        386,
+        220,
+        122,
+        110
+      ]
+    }
+  },
+  "results": [
+    {
+      "name": "demographic_scaling",
+      "seed": 2026,
+      "matrix_shape": [
+        17,
+        17
+      ],
+      "metrics": {
+        "matrix_mae": 6.4761228628281575,
+        "matrix_frobenius_distance": 198.41649039592323,
+        "age_assortativity": {
+          "diagonal_share": 0.2396513851176392,
+          "near_diagonal_share": 0.41616713230372665
+        },
+        "reciprocity_gap": 4.220571238374002
+      },
+      "notes": {
+        "status": "implemented-minimal",
+        "assumption": "reweights an existing contact template by target population age structure",
+        "reference_type": "real_public_COMES-F_workbook"
+      }
+    },
+    {
+      "name": "household_rule_based",
+      "seed": 2026,
+      "matrix_shape": [
+        17,
+        17
+      ],
+      "metrics": {
+        "matrix_mae": 0.35064844280259294,
+        "matrix_frobenius_distance": 8.816612305893242,
+        "age_assortativity": {
+          "diagonal_share": 0.13874051622866607,
+          "near_diagonal_share": 0.3029243694658756
+        },
+        "reciprocity_gap": 0.0
+      },
+      "notes": {
+        "status": "implemented-rule-based",
+        "assumption": "Uses fixed French-style household size priors plus heuristic school/work participation curves over evenly spaced age bins.",
+        "todo": "TODO: replace generic household priors with directly harmonized INSEE distributions once the target age-bin schema is fixed.",
+        "reference_type": "real_public_COMES-F_workbook"
+      }
+    }
+  ],
+  "comparison_to_placeholder": {
+    "available": true,
+    "source": "artifacts/outputs/exp001_results.json",
+    "deltas": {
+      "demographic_scaling": {
+        "delta_matrix_mae": -29.92537459653778,
+        "delta_matrix_frobenius_distance": -879.0388418926337
+      },
+      "household_rule_based": {
+        "delta_matrix_mae": -0.7960076718300311,
+        "delta_matrix_frobenius_distance": -24.511837234667965
+      }
+    }
+  }
+}
