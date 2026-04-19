@@ -28,7 +28,7 @@
 - Consequences:
   - Agentic components become optional and strictly bounded.
   - The next work package should focus on a shared experimental backbone, not additional brainstorming.
-  - Budget-sensitive use of OmniMart or Claude is reserved for high-value scientific bottlenecks only.
+  - Budget-sensitive use of external LLM calls is reserved for high-value scientific bottlenecks only.
 
 ## D0004
 - Date: 2026-04-15

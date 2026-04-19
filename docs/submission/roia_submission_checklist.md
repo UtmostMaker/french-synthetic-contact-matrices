@@ -23,7 +23,7 @@
 ## 3. Figures and tables
 
 - [ ] All manuscript figures are present under `manuscript/figures/`
-- [ ] Final exp006 figures reflect real OmniMart / Claude Sonnet 4.6 outputs
+- [ ] Final exp006 figures reflect archived real LLM outputs
 - [ ] Figure filenames match the LaTeX includes exactly
 - [ ] Resolution is sufficient for journal review and print export
 - [ ] Axis labels, legends, and captions are readable in grayscale and on screen

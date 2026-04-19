@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate final exp006 figures from real OmniMart/Claude results."""
+"""Generate final exp006 figures from archived real LLM results."""
 
 from __future__ import annotations
 

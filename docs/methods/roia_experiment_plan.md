@@ -112,7 +112,7 @@ If time or validation weakens the main idea:
 ## Budget strategy
 - local and rule-based first
 - no open-ended agent societies
-- reserve expensive OmniMart/Claude calls for:
+- reserve expensive external LLM calls for:
   - scenario compression,
   - controlled micro-simulations,
   - difficult interpretation or writing support

@@ -2,7 +2,7 @@
 
 [![Licence: MIT](https://img.shields.io/badge/Licence-MIT-yellow.svg)](LICENSE)
 
-Dépôt de recherche reproductible consacré à la construction, l'évaluation et la discussion de matrices de contact synthétiques françaises, avec un manuscrit ROIA et une extension comportementale par profils socio-démographiques alimentée par de vraies générations LLM.
+Dépôt de recherche reproductible consacré à la construction, l'évaluation et la discussion de matrices de contact synthétiques françaises, avec un manuscrit ROIA et une extension comportementale par profils socio-démographiques alimentée par des générations LLM réelles archivées.
 
 ## Ce que contient ce dépôt
 
@@ -12,7 +12,7 @@ Le projet suit une progression expérimentale volontairement incrémentale :
 2. un modèle de référence structuré par ménage, école, travail et communauté ;
 3. une version optimisée de ce modèle sur COMES-F ;
 4. une couche comportementale temporelle calibrée sur des séries françaises de la période Covid ;
-5. une couche d'agents socio-démographiques avec 22 profils et des générations réelles Claude Sonnet 4.6 via OmniMart.
+5. une couche d'agents socio-démographiques avec 22 profils et des générations LLM réelles archivées.
 
 L'objectif n'est pas de remplacer les enquêtes françaises par une boîte noire. L'objectif est de rendre chaque couche de modélisation explicite, testable et auditable.
 
@@ -32,7 +32,7 @@ L'objectif n'est pas de remplacer les enquêtes françaises par une boîte noire
 
 ### Résultats des agents LLM réels
 
-Avec **22 profils socio-démographiques × 6 périodes de politique sanitaire**, les générations réelles Claude Sonnet 4.6 produisent un gradient de politique publique lisible :
+Avec **22 profils socio-démographiques × 6 périodes de politique sanitaire**, les générations LLM réelles archivées produisent un gradient de politique publique lisible :
 
 - Pré-pandémie : réduction de mobilité **0,04**, adhésion au masque **0,15**
 - Premier confinement : réduction de mobilité **0,68**, adhésion au masque **0,66**
@@ -105,7 +105,7 @@ python3 scripts/run_exp006_final.py
 python3 scripts/generate_exp006_real_figures.py
 ```
 
-Si tu veux relancer la génération des profils, fournis `OMNIMART_API_KEY` puis exécute :
+Si tu veux relancer la génération des profils, définis `LLM_API_KEY`, adapte au besoin `base_url` dans `experiments/configs/exp006_llm_agents.yaml`, puis exécute :
 
 ```bash
 python3 scripts/run_exp006.py

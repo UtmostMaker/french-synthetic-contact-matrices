@@ -114,7 +114,7 @@ def main():
         "experiment_name": "exp006_llm_agents",
         "n_profiles": metrics["n_profiles"],
         "n_periods": metrics["n_periods"],
-        "llm_provider": "omnimart/claude-sonnet-4.6",
+        "llm_provider": "external-llm-api/claude-sonnet-4.6",
         "real_llm_calls": True,
         "heuristic_fallback": False,
         "metrics": metrics,

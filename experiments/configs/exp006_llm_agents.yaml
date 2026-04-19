@@ -5,8 +5,8 @@ model:
     - claude-sonnet-4-6-20260415
     - claude-sonnet-4.5
     - claude-sonnet-4
-  base_url: https://www.omnimartapi.store/v1
-  api_key_env: OMNIMART_API_KEY
+  base_url: https://api-provider.example/v1
+  api_key_env: LLM_API_KEY
   thinking: low
   request_pause_seconds: 0.8
   timeout_seconds: 90

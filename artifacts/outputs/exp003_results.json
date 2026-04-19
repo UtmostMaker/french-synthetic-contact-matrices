@@ -2,7 +2,7 @@
   "experiment_name": "exp003_time_series_behavioral",
   "config_path": "experiments/configs/exp003_time_series_behavioral.yaml",
   "reference": {
-    "source": "/home/cipher/.openclaw/workspace/research/french-synthetic-contact-matrices/data/raw/comes_f/RawData_ComesF.xlsx",
+    "source": "data/raw/comes_f/RawData_ComesF.xlsx",
     "survey": "COMES-F",
     "format": "xlsx-raw",
     "doi": "10.6084/m9.figshare.1466917.v2",

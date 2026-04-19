@@ -2,8 +2,8 @@
   "experiment_name": "exp006_llm_agents",
   "config_path": "experiments/configs/exp006_llm_agents.yaml",
   "llm_provider": {
-    "provider": "OmniMart",
-    "api_base": "https://www.omnimartapi.store/v1",
+    "provider": "external_llm_api",
+    "api_base": "redacted_for_public_release",
     "api_format": "OpenAI-compatible chat.completions",
     "primary_model": "claude-sonnet-4-6",
     "fallback_models": [
@@ -11,7 +11,7 @@
       "claude-sonnet-4.5",
       "claude-sonnet-4"
     ],
-    "api_key_env": "OMNIMART_API_KEY"
+    "api_key_env": "LLM_API_KEY"
   },
   "data_sources": {
     "google_mobility": "Official Google Community Mobility Reports regional archive for France national rows.",
@@ -19,7 +19,7 @@
     "profiles": "Approximate INSEE and Dares anchored socio-demographic priors, documented per profile and kept explicit rather than inferred from unavailable joint microdata."
   },
   "generation_modes": [
-    "omnimart_chat_completion:claude-sonnet-4-6"
+    "external_chat_completion:claude-sonnet-4-6"
   ],
   "aggregated_predictions": [
     {
@@ -102,7 +102,7 @@
       "mask_adherence": 0.08,
       "risk_perception": 0.2,
       "trust_in_measures": 0.48,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "etudiant_18_24_parents",
@@ -117,7 +117,7 @@
       "mask_adherence": 0.42,
       "risk_perception": 0.79,
       "trust_in_measures": 0.51,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "etudiant_18_24_parents",
@@ -132,7 +132,7 @@
       "mask_adherence": 0.58,
       "risk_perception": 0.38,
       "trust_in_measures": 0.47,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "etudiant_18_24_parents",
@@ -147,7 +147,7 @@
       "mask_adherence": 0.76,
       "risk_perception": 0.54,
       "trust_in_measures": 0.48,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "etudiant_18_24_parents",
@@ -162,7 +162,7 @@
       "mask_adherence": 0.83,
       "risk_perception": 0.67,
       "trust_in_measures": 0.5,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "etudiant_18_24_parents",
@@ -177,7 +177,7 @@
       "mask_adherence": 0.68,
       "risk_perception": 0.46,
       "trust_in_measures": 0.49,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "etudiant_18_24_colocation",
@@ -192,7 +192,7 @@
       "mask_adherence": 0.03,
       "risk_perception": 0.18,
       "trust_in_measures": 0.46,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "etudiant_18_24_colocation",
@@ -207,7 +207,7 @@
       "mask_adherence": 0.38,
       "risk_perception": 0.61,
       "trust_in_measures": 0.47,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "etudiant_18_24_colocation",
@@ -222,7 +222,7 @@
       "mask_adherence": 0.64,
       "risk_perception": 0.29,
       "trust_in_measures": 0.47,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "etudiant_18_24_colocation",
@@ -237,7 +237,7 @@
       "mask_adherence": 0.76,
       "risk_perception": 0.56,
       "trust_in_measures": 0.46,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "etudiant_18_24_colocation",
@@ -252,7 +252,7 @@
       "mask_adherence": 0.81,
       "risk_perception": 0.44,
       "trust_in_measures": 0.46,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "etudiant_18_24_colocation",
@@ -267,7 +267,7 @@
       "mask_adherence": 0.72,
       "risk_perception": 0.46,
       "trust_in_measures": 0.45,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "employe_25_34_seul",
@@ -282,7 +282,7 @@
       "mask_adherence": 0.02,
       "risk_perception": 0.22,
       "trust_in_measures": 0.49,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "employe_25_34_seul",
@@ -297,7 +297,7 @@
       "mask_adherence": 0.39,
       "risk_perception": 0.71,
       "trust_in_measures": 0.49,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "employe_25_34_seul",
@@ -312,7 +312,7 @@
       "mask_adherence": 0.68,
       "risk_perception": 0.38,
       "trust_in_measures": 0.47,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "employe_25_34_seul",
@@ -327,7 +327,7 @@
       "mask_adherence": 0.81,
       "risk_perception": 0.57,
       "trust_in_measures": 0.49,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "employe_25_34_seul",
@@ -342,7 +342,7 @@
       "mask_adherence": 0.81,
       "risk_perception": 0.63,
       "trust_in_measures": 0.48,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "employe_25_34_seul",
@@ -357,7 +357,7 @@
       "mask_adherence": 0.78,
       "risk_perception": 0.45,
       "trust_in_measures": 0.49,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "employe_35_49_monoparent",
@@ -372,7 +372,7 @@
       "mask_adherence": 0.02,
       "risk_perception": 0.2,
       "trust_in_measures": 0.46,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "employe_35_49_monoparent",
@@ -387,7 +387,7 @@
       "mask_adherence": 0.49,
       "risk_perception": 0.73,
       "trust_in_measures": 0.46,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "employe_35_49_monoparent",
@@ -402,7 +402,7 @@
       "mask_adherence": 0.72,
       "risk_perception": 0.55,
       "trust_in_measures": 0.46,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "employe_35_49_monoparent",
@@ -417,7 +417,7 @@
       "mask_adherence": 0.82,
       "risk_perception": 0.71,
       "trust_in_measures": 0.45,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "employe_35_49_monoparent",
@@ -432,7 +432,7 @@
       "mask_adherence": 0.76,
       "risk_perception": 0.64,
       "trust_in_measures": 0.45,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "employe_35_49_monoparent",
@@ -447,7 +447,7 @@
       "mask_adherence": 0.69,
       "risk_perception": 0.47,
       "trust_in_measures": 0.46,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "ouvrier_25_34_couple_enfants",
@@ -462,7 +462,7 @@
       "mask_adherence": 0.02,
       "risk_perception": 0.22,
       "trust_in_measures": 0.41,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "ouvrier_25_34_couple_enfants",
@@ -477,7 +477,7 @@
       "mask_adherence": 0.48,
       "risk_perception": 0.74,
       "trust_in_measures": 0.43,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "ouvrier_25_34_couple_enfants",
@@ -492,7 +492,7 @@
       "mask_adherence": 0.58,
       "risk_perception": 0.44,
       "trust_in_measures": 0.43,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "ouvrier_25_34_couple_enfants",
@@ -507,7 +507,7 @@
       "mask_adherence": 0.74,
       "risk_perception": 0.56,
       "trust_in_measures": 0.42,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "ouvrier_25_34_couple_enfants",
@@ -522,7 +522,7 @@
       "mask_adherence": 0.76,
       "risk_perception": 0.69,
       "trust_in_measures": 0.42,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "ouvrier_25_34_couple_enfants",
@@ -537,7 +537,7 @@
       "mask_adherence": 0.62,
       "risk_perception": 0.55,
       "trust_in_measures": 0.41,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "ouvrier_35_49_couple_enfants",
@@ -552,7 +552,7 @@
       "mask_adherence": 0.06,
       "risk_perception": 0.41,
       "trust_in_measures": 0.4,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "ouvrier_35_49_couple_enfants",
@@ -567,7 +567,7 @@
       "mask_adherence": 0.52,
       "risk_perception": 0.76,
       "trust_in_measures": 0.43,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "ouvrier_35_49_couple_enfants",
@@ -582,7 +582,7 @@
       "mask_adherence": 0.62,
       "risk_perception": 0.54,
       "trust_in_measures": 0.41,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "ouvrier_35_49_couple_enfants",
@@ -597,7 +597,7 @@
       "mask_adherence": 0.72,
       "risk_perception": 0.58,
       "trust_in_measures": 0.4,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "ouvrier_35_49_couple_enfants",
@@ -612,7 +612,7 @@
       "mask_adherence": 0.76,
       "risk_perception": 0.73,
       "trust_in_measures": 0.41,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "ouvrier_35_49_couple_enfants",
@@ -627,7 +627,7 @@
       "mask_adherence": 0.7,
       "risk_perception": 0.55,
       "trust_in_measures": 0.4,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "employe_35_49_couple_enfants",
@@ -642,7 +642,7 @@
       "mask_adherence": 0.04,
       "risk_perception": 0.21,
       "trust_in_measures": 0.49,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "employe_35_49_couple_enfants",
@@ -657,7 +657,7 @@
       "mask_adherence": 0.43,
       "risk_perception": 0.75,
       "trust_in_measures": 0.5,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "employe_35_49_couple_enfants",
@@ -672,7 +672,7 @@
       "mask_adherence": 0.72,
       "risk_perception": 0.44,
       "trust_in_measures": 0.5,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "employe_35_49_couple_enfants",
@@ -687,7 +687,7 @@
       "mask_adherence": 0.79,
       "risk_perception": 0.63,
       "trust_in_measures": 0.5,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "employe_35_49_couple_enfants",
@@ -702,7 +702,7 @@
       "mask_adherence": 0.76,
       "risk_perception": 0.71,
       "trust_in_measures": 0.49,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "employe_35_49_couple_enfants",
@@ -717,7 +717,7 @@
       "mask_adherence": 0.68,
       "risk_perception": 0.55,
       "trust_in_measures": 0.48,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "profession_intermediaire_35_49_couple_enfants",
@@ -732,7 +732,7 @@
       "mask_adherence": 0.05,
       "risk_perception": 0.12,
       "trust_in_measures": 0.58,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "profession_intermediaire_35_49_couple_enfants",
@@ -747,7 +747,7 @@
       "mask_adherence": 0.61,
       "risk_perception": 0.81,
       "trust_in_measures": 0.58,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "profession_intermediaire_35_49_couple_enfants",
@@ -762,7 +762,7 @@
       "mask_adherence": 0.62,
       "risk_perception": 0.44,
       "trust_in_measures": 0.58,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "profession_intermediaire_35_49_couple_enfants",
@@ -777,7 +777,7 @@
       "mask_adherence": 0.67,
       "risk_perception": 0.62,
       "trust_in_measures": 0.58,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "profession_intermediaire_35_49_couple_enfants",
@@ -792,7 +792,7 @@
       "mask_adherence": 0.8,
       "risk_perception": 0.7,
       "trust_in_measures": 0.58,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "profession_intermediaire_35_49_couple_enfants",
@@ -807,7 +807,7 @@
       "mask_adherence": 0.62,
       "risk_perception": 0.51,
       "trust_in_measures": 0.56,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "cadre_25_34_seul",
@@ -822,7 +822,7 @@
       "mask_adherence": 0.0,
       "risk_perception": 0.08,
       "trust_in_measures": 0.65,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "cadre_25_34_seul",
@@ -837,7 +837,7 @@
       "mask_adherence": 0.65,
       "risk_perception": 0.72,
       "trust_in_measures": 0.65,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "cadre_25_34_seul",
@@ -852,7 +852,7 @@
       "mask_adherence": 0.76,
       "risk_perception": 0.42,
       "trust_in_measures": 0.63,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "cadre_25_34_seul",
@@ -867,7 +867,7 @@
       "mask_adherence": 0.91,
       "risk_perception": 0.7,
       "trust_in_measures": 0.64,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "cadre_25_34_seul",
@@ -882,7 +882,7 @@
       "mask_adherence": 0.88,
       "risk_perception": 0.58,
       "trust_in_measures": 0.64,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "cadre_25_34_seul",
@@ -897,7 +897,7 @@
       "mask_adherence": 0.82,
       "risk_perception": 0.45,
       "trust_in_measures": 0.65,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "cadre_35_49_couple_enfants",
@@ -912,7 +912,7 @@
       "mask_adherence": 0.02,
       "risk_perception": 0.1,
       "trust_in_measures": 0.64,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "cadre_35_49_couple_enfants",
@@ -927,7 +927,7 @@
       "mask_adherence": 0.74,
       "risk_perception": 0.85,
       "trust_in_measures": 0.71,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "cadre_35_49_couple_enfants",
@@ -942,7 +942,7 @@
       "mask_adherence": 0.77,
       "risk_perception": 0.4,
       "trust_in_measures": 0.68,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "cadre_35_49_couple_enfants",
@@ -957,7 +957,7 @@
       "mask_adherence": 0.85,
       "risk_perception": 0.72,
       "trust_in_measures": 0.68,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "cadre_35_49_couple_enfants",
@@ -972,7 +972,7 @@
       "mask_adherence": 0.89,
       "risk_perception": 0.73,
       "trust_in_measures": 0.67,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "cadre_35_49_couple_enfants",
@@ -987,7 +987,7 @@
       "mask_adherence": 0.78,
       "risk_perception": 0.45,
       "trust_in_measures": 0.68,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "independant_35_49_couple_enfants",
@@ -1002,7 +1002,7 @@
       "mask_adherence": 0.05,
       "risk_perception": 0.12,
       "trust_in_measures": 0.38,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "independant_35_49_couple_enfants",
@@ -1017,7 +1017,7 @@
       "mask_adherence": 0.62,
       "risk_perception": 0.84,
       "trust_in_measures": 0.43,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "independant_35_49_couple_enfants",
@@ -1032,7 +1032,7 @@
       "mask_adherence": 0.72,
       "risk_perception": 0.52,
       "trust_in_measures": 0.42,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "independant_35_49_couple_enfants",
@@ -1047,7 +1047,7 @@
       "mask_adherence": 0.88,
       "risk_perception": 0.7,
       "trust_in_measures": 0.41,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "independant_35_49_couple_enfants",
@@ -1062,7 +1062,7 @@
       "mask_adherence": 0.82,
       "risk_perception": 0.71,
       "trust_in_measures": 0.4,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "independant_35_49_couple_enfants",
@@ -1077,7 +1077,7 @@
       "mask_adherence": 0.78,
       "risk_perception": 0.55,
       "trust_in_measures": 0.42,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "agriculteur_50_64_couple",
@@ -1092,7 +1092,7 @@
       "mask_adherence": 0.02,
       "risk_perception": 0.12,
       "trust_in_measures": 0.48,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "agriculteur_50_64_couple",
@@ -1107,7 +1107,7 @@
       "mask_adherence": 0.18,
       "risk_perception": 0.68,
       "trust_in_measures": 0.45,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "agriculteur_50_64_couple",
@@ -1122,7 +1122,7 @@
       "mask_adherence": 0.4,
       "risk_perception": 0.45,
       "trust_in_measures": 0.48,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "agriculteur_50_64_couple",
@@ -1137,7 +1137,7 @@
       "mask_adherence": 0.65,
       "risk_perception": 0.52,
       "trust_in_measures": 0.46,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "agriculteur_50_64_couple",
@@ -1152,7 +1152,7 @@
       "mask_adherence": 0.65,
       "risk_perception": 0.68,
       "trust_in_measures": 0.46,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "agriculteur_50_64_couple",
@@ -1167,7 +1167,7 @@
       "mask_adherence": 0.35,
       "risk_perception": 0.5,
       "trust_in_measures": 0.48,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "inactif_50_64_seul",
@@ -1182,7 +1182,7 @@
       "mask_adherence": 0.07,
       "risk_perception": 0.21,
       "trust_in_measures": 0.51,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "inactif_50_64_seul",
@@ -1197,7 +1197,7 @@
       "mask_adherence": 0.38,
       "risk_perception": 0.79,
       "trust_in_measures": 0.5,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "inactif_50_64_seul",
@@ -1212,7 +1212,7 @@
       "mask_adherence": 0.64,
       "risk_perception": 0.56,
       "trust_in_measures": 0.51,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "inactif_50_64_seul",
@@ -1227,7 +1227,7 @@
       "mask_adherence": 0.79,
       "risk_perception": 0.64,
       "trust_in_measures": 0.51,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "inactif_50_64_seul",
@@ -1242,7 +1242,7 @@
       "mask_adherence": 0.76,
       "risk_perception": 0.62,
       "trust_in_measures": 0.51,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "inactif_50_64_seul",
@@ -1257,7 +1257,7 @@
       "mask_adherence": 0.71,
       "risk_perception": 0.64,
       "trust_in_measures": 0.51,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "chomeur_25_49_seul",
@@ -1272,7 +1272,7 @@
       "mask_adherence": 0.03,
       "risk_perception": 0.28,
       "trust_in_measures": 0.38,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "chomeur_25_49_seul",
@@ -1287,7 +1287,7 @@
       "mask_adherence": 0.55,
       "risk_perception": 0.7,
       "trust_in_measures": 0.35,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "chomeur_25_49_seul",
@@ -1302,7 +1302,7 @@
       "mask_adherence": 0.58,
       "risk_perception": 0.44,
       "trust_in_measures": 0.38,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "chomeur_25_49_seul",
@@ -1317,7 +1317,7 @@
       "mask_adherence": 0.73,
       "risk_perception": 0.62,
       "trust_in_measures": 0.38,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "chomeur_25_49_seul",
@@ -1332,7 +1332,7 @@
       "mask_adherence": 0.71,
       "risk_perception": 0.64,
       "trust_in_measures": 0.37,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "chomeur_25_49_seul",
@@ -1347,7 +1347,7 @@
       "mask_adherence": 0.52,
       "risk_perception": 0.46,
       "trust_in_measures": 0.34,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "retraite_65_74_couple",
@@ -1362,7 +1362,7 @@
       "mask_adherence": 0.01,
       "risk_perception": 0.18,
       "trust_in_measures": 0.64,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "retraite_65_74_couple",
@@ -1377,7 +1377,7 @@
       "mask_adherence": 0.78,
       "risk_perception": 0.91,
       "trust_in_measures": 0.66,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "retraite_65_74_couple",
@@ -1392,7 +1392,7 @@
       "mask_adherence": 0.76,
       "risk_perception": 0.79,
       "trust_in_measures": 0.64,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "retraite_65_74_couple",
@@ -1407,7 +1407,7 @@
       "mask_adherence": 0.79,
       "risk_perception": 0.76,
       "trust_in_measures": 0.64,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "retraite_65_74_couple",
@@ -1422,7 +1422,7 @@
       "mask_adherence": 0.87,
       "risk_perception": 0.79,
       "trust_in_measures": 0.66,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "retraite_65_74_couple",
@@ -1437,7 +1437,7 @@
       "mask_adherence": 0.84,
       "risk_perception": 0.76,
       "trust_in_measures": 0.64,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "retraite_75_plus_seul",
@@ -1452,7 +1452,7 @@
       "mask_adherence": 0.05,
       "risk_perception": 0.68,
       "trust_in_measures": 0.66,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "retraite_75_plus_seul",
@@ -1467,7 +1467,7 @@
       "mask_adherence": 0.7,
       "risk_perception": 0.95,
       "trust_in_measures": 0.66,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "retraite_75_plus_seul",
@@ -1482,7 +1482,7 @@
       "mask_adherence": 0.76,
       "risk_perception": 0.88,
       "trust_in_measures": 0.66,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "retraite_75_plus_seul",
@@ -1497,7 +1497,7 @@
       "mask_adherence": 0.88,
       "risk_perception": 0.9,
       "trust_in_measures": 0.65,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "retraite_75_plus_seul",
@@ -1512,7 +1512,7 @@
       "mask_adherence": 0.85,
       "risk_perception": 0.92,
       "trust_in_measures": 0.66,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "retraite_75_plus_seul",
@@ -1527,7 +1527,7 @@
       "mask_adherence": 0.84,
       "risk_perception": 0.8,
       "trust_in_measures": 0.67,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "employe_50_64_couple",
@@ -1542,7 +1542,7 @@
       "mask_adherence": 0.02,
       "risk_perception": 0.28,
       "trust_in_measures": 0.54,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "employe_50_64_couple",
@@ -1557,7 +1557,7 @@
       "mask_adherence": 0.62,
       "risk_perception": 0.81,
       "trust_in_measures": 0.54,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "employe_50_64_couple",
@@ -1572,7 +1572,7 @@
       "mask_adherence": 0.76,
       "risk_perception": 0.63,
       "trust_in_measures": 0.53,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "employe_50_64_couple",
@@ -1587,7 +1587,7 @@
       "mask_adherence": 0.81,
       "risk_perception": 0.69,
       "trust_in_measures": 0.55,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "employe_50_64_couple",
@@ -1602,7 +1602,7 @@
       "mask_adherence": 0.82,
       "risk_perception": 0.75,
       "trust_in_measures": 0.54,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "employe_50_64_couple",
@@ -1617,7 +1617,7 @@
       "mask_adherence": 0.75,
       "risk_perception": 0.63,
       "trust_in_measures": 0.54,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "ouvrier_50_64_couple",
@@ -1632,7 +1632,7 @@
       "mask_adherence": 0.03,
       "risk_perception": 0.48,
       "trust_in_measures": 0.43,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "ouvrier_50_64_couple",
@@ -1647,7 +1647,7 @@
       "mask_adherence": 0.45,
       "risk_perception": 0.75,
       "trust_in_measures": 0.44,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "ouvrier_50_64_couple",
@@ -1662,7 +1662,7 @@
       "mask_adherence": 0.68,
       "risk_perception": 0.63,
       "trust_in_measures": 0.44,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "ouvrier_50_64_couple",
@@ -1677,7 +1677,7 @@
       "mask_adherence": 0.75,
       "risk_perception": 0.7,
       "trust_in_measures": 0.42,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "ouvrier_50_64_couple",
@@ -1692,7 +1692,7 @@
       "mask_adherence": 0.8,
       "risk_perception": 0.75,
       "trust_in_measures": 0.43,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     },
     {
       "profile_key": "ouvrier_50_64_couple",
@@ -1707,7 +1707,7 @@
       "mask_adherence": 0.76,
       "risk_perception": 0.69,
       "trust_in_measures": 0.43,
-      "generation_mode": "omnimart_chat_completion:claude-sonnet-4-6"
+      "generation_mode": "external_chat_completion:claude-sonnet-4-6"
     }
   ],
   "profile_summary": [
@@ -2084,6 +2084,6 @@
       "retraite_65_74_couple",
       "retraite_75_plus_seul"
     ],
-    "honest_summary": "The experiment now uses real OmniMart-routed Claude Sonnet calls when OMNIMART_API_KEY is available. Profile targets remain indirect because the public CoviPrev extract used here is national rather than fully stratified by socio-professional category, so the profile-level fit should be read as plausibility calibration rather than identification."
+    "honest_summary": "The experiment now uses real external Claude Sonnet calls when LLM_API_KEY is available. Profile targets remain indirect because the public CoviPrev extract used here is national rather than fully stratified by socio-professional category, so the profile-level fit should be read as plausibility calibration rather than identification."
   }
 }

@@ -92,8 +92,8 @@ def run_experiment(config: dict[str, Any]) -> dict[str, Any]:
     agent = LLMBehavioralAgent(
         model=str(model_cfg.get("name", "claude-sonnet-4-6")),
         fallback_models=tuple(model_cfg.get("fallback_models", ["claude-sonnet-4-6-20260415", "claude-sonnet-4.5", "claude-sonnet-4"])),
-        base_url=str(model_cfg.get("base_url", "https://www.omnimartapi.store/v1")),
-        api_key_env=str(model_cfg.get("api_key_env", "OMNIMART_API_KEY")),
+        base_url=str(model_cfg.get("base_url", "https://api-provider.example/v1")),
+        api_key_env=str(model_cfg.get("api_key_env", "LLM_API_KEY")),
         thinking=str(model_cfg.get("thinking", "low")),
         request_pause_seconds=float(model_cfg.get("request_pause_seconds", 0.8)),
         timeout_seconds=int(model_cfg.get("timeout_seconds", 90)),
@@ -272,12 +272,12 @@ def run_experiment(config: dict[str, Any]) -> dict[str, Any]:
         "experiment_name": str(config.get("experiment_name", "exp006_llm_agents")),
         "config_path": str(CONFIG_PATH.relative_to(REPO_ROOT)),
         "llm_provider": {
-            "provider": "OmniMart",
-            "api_base": str(model_cfg.get("base_url", "https://www.omnimartapi.store/v1")),
+            "provider": "external_llm_api",
+            "api_base": str(model_cfg.get("base_url", "https://api-provider.example/v1")),
             "api_format": "OpenAI-compatible chat.completions",
             "primary_model": str(model_cfg.get("name", "claude-sonnet-4-6")),
             "fallback_models": list(model_cfg.get("fallback_models", ["claude-sonnet-4-6-20260415", "claude-sonnet-4.5", "claude-sonnet-4"])),
-            "api_key_env": str(model_cfg.get("api_key_env", "OMNIMART_API_KEY")),
+            "api_key_env": str(model_cfg.get("api_key_env", "LLM_API_KEY")),
         },
         "data_sources": {
             "google_mobility": "Official Google Community Mobility Reports regional archive for France national rows.",
@@ -294,7 +294,7 @@ def run_experiment(config: dict[str, Any]) -> dict[str, Any]:
             "best_aligned_profiles": [item["profile_key"] for item in profile_errors[:3]],
             "least_aligned_profiles": [item["profile_key"] for item in profile_errors[-3:]],
             "honest_summary": (
-                "The experiment now uses real OmniMart-routed Claude Sonnet calls when OMNIMART_API_KEY is available. "
+                "The experiment now uses real external LLM calls when LLM_API_KEY is available. "
                 "Profile targets remain indirect because the public CoviPrev extract used here is national rather than fully stratified by socio-professional category, so the profile-level fit should be read as plausibility calibration rather than identification."
             ),
         },
