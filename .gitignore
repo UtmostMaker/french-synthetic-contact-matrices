@@ -26,6 +26,9 @@ data/processed/
 *.log
 *.out
 *.pdf
+!manuscript/roia_manuscript.pdf
+!manuscript/roia_manuscript_en.pdf
+!docs/pedagogical_submission_guide.pdf
 *.run.xml
 *.synctex.gz
 *backup*.tex

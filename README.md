@@ -140,10 +140,26 @@ Sorties principales :
 
 Cette séquence correspond au coeur argumentatif actuel du manuscrit : `exp007` pose la première médiation SHS/LLM, `exp008` sert de diagnostic ciblé sur l'ancrage mobilité, et `exp009` fournit la version finale retenue dans la discussion scientifique.
 
+## Artéfacts publics canoniques
+
+Les fichiers à considérer comme références publiques actuelles sont :
+
+- manuscrit français source : `manuscript/roia_manuscript.tex`
+- manuscrit français compilé : `manuscript/roia_manuscript.pdf`
+- manuscrit anglais source : `manuscript/roia_manuscript_en.tex`
+- manuscrit anglais compilé : `manuscript/roia_manuscript_en.pdf`
+- guide pédagogique de défense en peer review : `docs/pedagogical_submission_guide.tex`
+- guide pédagogique compilé : `docs/pedagogical_submission_guide.pdf`
+- sortie centrale finale SHS/LLM : `artifacts/outputs/exp009_shs_llm_mobility_results.json`
+
+Certains noms plus anciens restent présents pour la reproductibilité historique du projet. Quand un doute existe, les fichiers ci-dessus priment.
+
 ## Statut de publication
 
 - Source du manuscrit ROIA : `manuscript/roia_manuscript.tex`
 - Manuscrit compilé : `manuscript/roia_manuscript.pdf`
+- Version anglaise : `manuscript/roia_manuscript_en.pdf`
+- Guide pédagogique : `docs/pedagogical_submission_guide.pdf`
 
 Pour compiler le manuscrit depuis `manuscript/` :
 

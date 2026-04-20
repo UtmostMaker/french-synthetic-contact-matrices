@@ -1,0 +1,352 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{lmodern}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric,fit,backgrounds}
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue}
+
+\definecolor{bluebox}{HTML}{E8F0FE}
+\definecolor{greenbox}{HTML}{EAF7EA}
+\definecolor{yellowbox}{HTML}{FFF4D6}
+\definecolor{redbox}{HTML}{FDEBEC}
+\definecolor{graytext}{HTML}{475569}
+
+\title{Guide pédagogique et de défense du manuscrit\\\large LLM, SHS et épidémiologie}
+\author{Martin Collins}
+\date{20 avril 2026}
+\emergencystretch=2em
+
+\begin{document}
+\sloppy
+\maketitle
+
+\begin{center}
+\begin{minipage}{0.94\textwidth}
+\small
+\textbf{But du document.} Ce PDF sert à comprendre la logique complète de la soumission, à replacer chaque source de données dans le pipeline, et à disposer d'un argumentaire défendable en peer review. L'idée centrale est simple : le papier ne dit pas que les LLM remplacent les enquêtes. Il montre comment une couche socio-comportementale bornée, auditée et comparée à des contrôles explicites peut enrichir un pipeline français de matrices de contact.
+\end{minipage}
+\end{center}
+
+\section{Résumé exécutif en une minute}
+
+\begin{itemize}
+\item Une \textbf{matrice de contact} décrit combien de contacts ont lieu entre groupes d'âge.
+\item Les matrices classiques sont utiles, mais elles écrasent une partie des différences sociales et comportementales.
+\item Le papier construit donc un pipeline par couches :
+  \begin{enumerate}
+  \item une base statique claire et interprétable,
+  \item une couche temporelle légère,
+  \item puis une couche LLM qui joue un rôle de \textbf{médiateur socio-comportemental}.
+  \end{enumerate}
+\item \textbf{COMES-F} sert d'ancrage structurel pour les contacts en France.
+\item \textbf{CoviPrev}, \textbf{SocialCov} et \textbf{Google Mobility} servent à vérifier comment les comportements et la mobilité évoluent dans le temps.
+\item Le résultat le plus important est la séquence \texttt{exp007} à \texttt{exp009} : elle montre que le bon cadrage de la variable de mobilité permet au bloc LLM de battre la baseline heuristique sur la mobilité et sur la prévention agrégée.
+\end{itemize}
+
+\section{Le problème scientifique, dit simplement}
+
+En modélisation épidémiologique, on a souvent besoin d'une matrice de contact réaliste. Le problème est que les matrices disponibles disent surtout \emph{qui rencontre qui, par âge}, mais beaucoup moins \emph{qui peut réellement réduire sa mobilité, télétravailler, suivre les mesures, ou au contraire y échapper difficilement}. Or ces différences ont un effet direct sur la diffusion d'une épidémie.
+
+Le papier essaie donc de résoudre un angle mort : comment réintroduire des différences socio-comportementales sans tomber dans une simulation agentique lourde, opaque, coûteuse à calibrer, ou impossible à auditer ? La réponse proposée est prudente : ajouter une couche intermédiaire, explicite, bornée, contrôlée, fondée sur des profils sociaux nommés et reliée à des séries empiriques françaises.
+
+\section{Le pipeline complet du papier}
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[
+  node distance=1.1cm,
+  box/.style={draw=black!60, rounded corners=3pt, align=center, minimum width=4.2cm, minimum height=1.2cm, font=\small},
+  arrow/.style={-{Latex[length=3mm]}, thick, draw=black!70}
+]
+\node[box, fill=bluebox] (a) {1. Base statique\\Contacts domicile, école, travail, communauté};
+\node[box, fill=greenbox, below=of a, xshift=1.2cm] (b) {2. Couche temporelle\\Comportements et périodes sanitaires};
+\node[box, fill=yellowbox, below=of b, xshift=1.2cm] (c) {3. Exp006\\Profils explicites + appels LLM réels};
+\node[box, fill=redbox, below=of c, xshift=1.2cm] (d) {4. Exp007 à Exp009\\Couche de médiation SHS/LLM};
+\draw[arrow] (a.south east) -- (b.north west);
+\draw[arrow] (b.south east) -- (c.north west);
+\draw[arrow] (c.south east) -- (d.north west);
+\node[align=center, text=graytext, above=0.4cm of a] {Chaque couche sert de contrôle pour la suivante.};
+\end{tikzpicture}
+\caption{Logique générale du manuscrit.}
+\end{figure}
+
+La logique importante à retenir est la suivante : le papier n'introduit pas le LLM d'emblée. Il commence par établir un socle que l'on peut lire, tester et critiquer sans ambiguïté. Cela protège l'argument scientifique. Si le bloc LLM fait mieux à la fin, on sait mieux ce qu'il apporte réellement.
+
+\section{Ce qu'est la méthode heuristique}
+
+Le mot \emph{heuristique} peut impressionner, mais ici il renvoie à quelque chose d'assez simple : une règle de construction raisonnable et interprétable, pas un modèle magique.
+
+Dans le papier, la baseline heuristique consiste à décomposer les contacts en quatre contextes :
+\begin{itemize}
+\item \textbf{domicile},
+\item \textbf{école},
+\item \textbf{travail},
+\item \textbf{autres contacts communautaires}.
+\end{itemize}
+
+Ensuite, on règle la forme de ces composantes avec des hypothèses simples :
+\begin{itemize}
+\item au domicile, on attend des bandes parent-enfant, des effets de co-résidence, une proximité conjugale ;
+\item à l'école, les contacts se concentrent autour des âges scolaires ;
+\item au travail, ils se concentrent sur les âges d'activité ;
+\item dans la communauté, on ajoute un fond plus diffus.
+\end{itemize}
+
+Pourquoi c'est utile ? Parce que cette baseline est :
+\begin{itemize}
+\item \textbf{compréhensible},
+\item \textbf{audit-able},
+\item \textbf{calibrable},
+\item et elle sert de \textbf{point de comparaison honnête} contre le bloc LLM.
+\end{itemize}
+
+Donc, si on te demande en review : \emph{« Qu'est-ce que votre heuristique ? »}, tu peux répondre :
+
+\begin{quote}
+« C'est une construction interprétable de la matrice de contact à partir de quatre contextes sociaux simples, utilisée comme baseline explicite avant d'ajouter une couche comportementale puis une couche SHS/LLM. »
+\end{quote}
+
+\section{D'où viennent les données, et à quoi elles servent}
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[
+  src/.style={draw=black!60, rounded corners=3pt, fill=white, minimum width=3.6cm, minimum height=1.15cm, align=center, font=\small},
+  use/.style={draw=blue!60!black, rounded corners=3pt, fill=bluebox, minimum width=4.2cm, minimum height=1.2cm, align=center, font=\small},
+  arrow/.style={-{Latex[length=3mm]}, thick, draw=black!65}
+]
+\node[src] (comes) at (0,4.8) {COMES-F\\Enquête contacts France};
+\node[src] (covi) at (0,2.9) {CoviPrev\\Enquête comportements};
+\node[src] (social) at (0,1.0) {SocialCov\\Enquête contacts répétée};
+\node[src] (google) at (0,-0.9) {Google Mobility\\Mobilité agrégée};
+
+\node[use] (static) at (7,4.2) {Base statique\\Validation structurelle};
+\node[use] (temporal) at (7,2.0) {Couche temporelle\\Validation des dynamiques};
+\node[use] (llm) at (7,-0.2) {Couche SHS/LLM\\Plausibilité des profils et régimes};
+
+\draw[arrow] (comes.east) -- (static.west);
+\draw[arrow] (covi.east) -- (temporal.west);
+\draw[arrow] (social.east) -- (temporal.west);
+\draw[arrow] (google.east) -- (llm.west);
+\draw[arrow] (covi.east) -- (llm.west);
+\end{tikzpicture}
+\caption{Comment les sources empiriques alimentent le pipeline.}
+\end{figure}
+
+\subsection*{COMES-F}
+COMES-F est l'ancrage structurel principal. C'est l'enquête française de contacts interpersonnels. Elle sert à dire : \emph{à quoi ressemble une matrice de contact plausible en France ?} C'est donc le bon point de départ pour valider la structure de base, notamment l'assortativité par âge et la cohérence globale des intensités.
+
+En version courte :
+\begin{quote}
+« COMES-F sert à vérifier que notre socle de matrice de contact ressemble à quelque chose de crédible pour la France. »
+\end{quote}
+
+\subsection*{CoviPrev}
+CoviPrev est une enquête de Santé publique France sur les comportements pendant la pandémie. Elle renseigne des choses comme le port du masque, la distanciation, la perception du risque, ou certaines attitudes de prévention.
+
+Dans le papier, CoviPrev ne sert pas à mesurer les contacts directement. Elle sert à calibrer ou évaluer la \textbf{couche comportementale}. Elle répond à la question : \emph{quand les contraintes sanitaires changent, est-ce que notre indice de prévention bouge dans le bon sens et à la bonne ampleur ?}
+
+En version courte :
+\begin{quote}
+« CoviPrev sert à vérifier la dynamique comportementale, pas la structure brute des contacts. »
+\end{quote}
+
+\subsection*{SocialCov}
+SocialCov est important car il donne des informations répétées sur les contacts pendant différentes phases de la crise sanitaire. Cela permet de tester la variation relative des contacts au fil du temps.
+
+En version courte :
+\begin{quote}
+« SocialCov sert à regarder si notre couche temporelle fait bouger les contacts dans la bonne direction selon les périodes. »
+\end{quote}
+
+\subsection*{Google Mobility}
+Google Mobility est souvent mal compris, donc il faut être très clair. Ces données ne mesurent pas les contacts eux-mêmes. Elles donnent un signal agrégé de mobilité, par catégories de lieux ou de déplacements. Dans le papier, elles servent comme \textbf{proxy de réduction de mobilité} entre régimes sanitaires.
+
+Autrement dit :
+\begin{itemize}
+\item si la mobilité baisse fortement, cela suggère qu'une partie des occasions de contact hors domicile baisse aussi ;
+\item mais cela ne dit pas exactement \emph{qui rencontre qui} ;
+\item c'est donc une variable \textbf{intermédiaire}, pas une vérité totale sur les contacts.
+\end{itemize}
+
+En version courte :
+\begin{quote}
+« Google Mobility apporte un signal empirique sur la baisse ou la reprise des déplacements. Ce n'est pas une matrice de contact, mais c'est un bon repère pour calibrer une variable latente de réduction de mobilité. »
+\end{quote}
+
+\subsection*{Vue d'ensemble synthétique}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{2.3cm} >{\raggedright\arraybackslash}p{3.5cm} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+\toprule
+Source & Nature & Ce que ça apporte & Ce que ça n'apporte pas \\
+\midrule
+COMES-F & Enquête de contacts & Structure de référence des contacts en France & Pas une dynamique fine période par période \\
+CoviPrev & Enquête comportementale & Validation de la prévention et des attitudes & Pas une mesure directe complète des contacts \\
+SocialCov & Série d'enquêtes contacts & Variation relative des contacts selon périodes & Pas une matrice structurelle complète comme COMES-F \\
+Google Mobility & Traces agrégées de mobilité & Proxy empirique de baisse ou reprise des déplacements & Pas une mesure directe du nombre de contacts \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{Ce qu'apporte exactement la couche LLM}
+
+La couche LLM ne remplace pas les données. Elle ajoute un \textbf{niveau intermédiaire de médiation sociale}. Concrètement, on définit des profils, par exemple cadre 35--49 ans avec enfants, agriculteur 50--64 ans en couple, étudiant vivant chez ses parents, etc. Ensuite, on demande au LLM de produire, sous forme bornée et structurée, des variables comme :
+\begin{itemize}
+\item capacité de réduction de mobilité,
+\item adhésion à la prévention,
+\item perception du risque,
+\item confiance,
+\item fatigue face aux politiques,
+\item contraintes de conformité.
+\end{itemize}
+
+L'idée n'est donc pas : \emph{« le LLM sait comment se comportent vraiment les gens »}. L'idée est :
+\begin{quote}
+« Le LLM sert à articuler, de manière structurée et contrôlée, des hypothèses SHS entre des profils sociaux explicites et des variables utiles au pipeline épidémiologique. »
+\end{quote}
+
+C'est important pour la défense du papier. Si on te challenge sur la validité, la bonne réponse est prudente :
+\begin{itemize}
+\item on ne prétend pas mesurer directement les comportements individuels ;
+\item on prétend construire un \textbf{médiateur socio-comportemental auditable} ;
+\item ce médiateur est comparé à une baseline heuristique explicite ;
+\item et il est jugé sur des agrégats observables, pas sur un récit libre du modèle.
+\end{itemize}
+
+\section{Pourquoi \texttt{exp006} compte déjà}
+
+\texttt{exp006\_llm\_agents} est le premier vrai résultat central. Il montre deux choses.
+
+Premièrement, les régimes sanitaires sont dans le bon ordre grossier. Par exemple, la réduction de mobilité simulée augmente fortement lors du premier confinement puis redescend ensuite, ce qui colle au sens de la chronologie sanitaire.
+
+Deuxièmement, on voit apparaître une hétérogénéité sociale lisible. Les profils cadres, plus compatibles avec le télétravail et la flexibilité numérique, réagissent différemment des profils plus contraints par le travail en présence, comme certains profils ouvriers ou agricoles.
+
+Le point à retenir n'est pas que \texttt{exp006} est déjà parfait. D'ailleurs la corrélation mobilité n'est que de 0,826 et la MAE de 0,206. Le point à retenir est qu'il révèle déjà une structure sociale interprétable.
+
+\section{Pourquoi \texttt{exp007} à \texttt{exp009} sont le vrai coeur du papier}
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[
+  block/.style={draw=black!60, rounded corners=3pt, minimum width=3.4cm, text width=3.15cm, minimum height=1.4cm, align=left, font=\small},
+  arrow/.style={-{Latex[length=3mm]}, thick, draw=black!70}
+]
+\node[block, fill=yellowbox] (e7) at (0,0) {\textbf{Exp007}\\Première couche SHS/LLM centrale\\Prévention meilleure que l'heuristique\\Mobilité encore mal cadrée};
+\node[block, fill=bluebox, right=0.55cm of e7] (e8) {\textbf{Exp008}\\Expérience diagnostic\\Montre que le verrou principal est la variable de mobilité};
+\node[block, fill=greenbox, right=0.55cm of e8] (e9) {\textbf{Exp009}\\Prompt révisé centré mobilité\\Bloc final qui surpasse la baseline};
+\draw[arrow] (e7) -- (e8);
+\draw[arrow] (e8) -- (e9);
+\end{tikzpicture}
+\caption{Lecture méthodologique de la séquence \texttt{exp007} à \texttt{exp009}.}
+\end{figure}
+
+C'est là que le papier devient fort.
+
+\subsection*{Exp007}
+Le bloc SHS/LLM commence à mieux faire que l'heuristique sur la prévention, mais pas sur la mobilité. Donc l'idée de médiation n'est pas fausse, mais un composant clé, la variable de \texttt{mobility\_reduction}, est mal posé.
+
+\subsection*{Exp008}
+Cette expérience sert de diagnostic. En ancrant explicitement la mobilité, on montre que le problème n'est pas forcément le bloc SHS/LLM lui-même. Le problème vient surtout du cadrage de la mobilité.
+
+\subsection*{Exp009}
+C'est la version finale retenue. Le prompt est révisé pour mieux traiter la mobilité, et le résultat devient nettement meilleur que la baseline heuristique sur deux dimensions importantes :
+\begin{itemize}
+\item \textbf{mobilité} : MAE 0,0219 contre 0,0935 ; corrélation 0,989 contre 0,863 ;
+\item \textbf{prévention} : MAE 0,0685 contre 0,1409.
+\end{itemize}
+
+Donc si on te demande \emph{« où est la vraie contribution ? »}, la réponse est :
+\begin{quote}
+« La vraie contribution est dans la formalisation d'une couche SHS/LLM bornée et auditée, et dans la démonstration, via exp007 à exp009, qu'elle peut dépasser une baseline heuristique sur des agrégats pertinents quand la médiation est bien cadrée. »
+\end{quote}
+
+\section{Ce qu'il faut dire en peer review}
+
+\subsection*{Version courte, solide}
+\begin{quote}
+« Le papier propose un pipeline incrémental. On part d'une base de matrices de contact française validée sur COMES-F. On ajoute ensuite une couche temporelle testée sur CoviPrev et SocialCov. Enfin, on introduit une couche SHS/LLM fondée sur des profils sociaux explicites. Cette couche n'est pas présentée comme un oracle social, mais comme un médiateur borné, auditable et comparé à des contrôles explicites. »
+\end{quote}
+
+\subsection*{Si on te demande pourquoi Google Mobility est là}
+\begin{quote}
+« Parce qu'on a besoin d'un repère empirique sur la réduction de mobilité entre régimes sanitaires. Ce n'est pas une matrice de contact, mais c'est un proxy utile pour calibrer une variable latente qui influence les occasions de contact hors domicile. »
+\end{quote}
+
+\subsection*{Si on te demande pourquoi le LLM est légitime}
+\begin{quote}
+« Pas pour remplacer les enquêtes. Pour jouer un rôle intermédiaire entre profils sociaux nommés, régimes de politique publique et modificateurs comportementaux utiles à la modélisation. »
+\end{quote}
+
+\subsection*{Si on te demande ce que prouve vraiment le papier}
+\begin{quote}
+« Il ne prouve pas une validité comportementale individuelle forte. Il montre qu'un bloc SHS/LLM explicite peut être intégré de façon méthodiquement lisible et battre une baseline heuristique sur certains agrégats lorsque son cadrage est correct. »
+\end{quote}
+
+\section{Ce qu'il ne faut surtout pas sur-vendre}
+
+Évite ces formulations :
+\begin{itemize}
+\item « Le LLM simule la société française. »
+\item « Le modèle prédit le comportement réel des individus. »
+\item « Google Mobility mesure les contacts. »
+\item « Les profils représentent fidèlement les catégories sociales françaises. »
+\end{itemize}
+
+Préfère ces formulations :
+\begin{itemize}
+\item « Le LLM produit une médiation socio-comportementale bornée. »
+\item « Les profils sont des objets analytiques explicites. »
+\item « Google Mobility sert de proxy agrégé de mobilité. »
+\item « Les résultats sont interprétés au niveau agrégé et comparatif. »
+\end{itemize}
+
+\section{Foire aux questions probables en review}
+
+\subsection*{Pourquoi ne pas faire directement un modèle agentique complet ?}
+Parce que ce n'est pas le même coût, pas le même niveau d'hypothèses, et pas le même objectif. Le papier vise un niveau intermédiaire : plus riche qu'une matrice purement agrégée, mais plus lisible et plus léger qu'une simulation micro-structurée complète.
+
+\subsection*{Pourquoi ne pas se contenter de la baseline heuristique ?}
+Parce qu'elle structure bien les contacts, mais elle ne donne pas naturellement une médiation sociale explicite entre profils, politiques publiques et comportement différencié. Le bloc LLM sert précisément à introduire cette médiation.
+
+\subsection*{Pourquoi le résultat final est-il crédible si exp007 échoue partiellement ?}
+Justement parce que l'échec partiel est documenté. Le papier ne cache pas la faiblesse. Il l'analyse, isole la variable qui pose problème, puis la corrige. Cela renforce la crédibilité méthodologique au lieu de la diminuer.
+
+\subsection*{Pourquoi comparer plusieurs campagnes plutôt que montrer seulement la meilleure ?}
+Parce que la vraie information scientifique est aussi dans le chemin : on voit ce qui bloque, ce qui s'améliore, et pourquoi la version finale tient mieux.
+
+\section{Le coeur du message à garder en tête}
+
+Si tu dois retenir une seule formulation, prends celle-ci :
+
+\begin{quote}
+\textbf{« L'article propose une manière prudente et transparente d'insérer une couche socio-comportementale LLM entre des profils sociaux explicites, des régimes de politique publique et un pipeline français de matrices de contact, sans prétendre remplacer les enquêtes ni valider directement les comportements individuels. »}
+\end{quote}
+
+\section{Mini antisèche orale}
+
+Tu peux presque apprendre ces quatre phrases par coeur :
+
+\begin{enumerate}
+\item « COMES-F sert à valider la structure de base des contacts en France. »
+\item « CoviPrev et SocialCov servent à tester la dynamique comportementale et les changements de contacts selon les périodes. »
+\item « Google Mobility ne mesure pas les contacts, mais apporte un proxy utile de réduction de mobilité. »
+\item « Le LLM n'est pas utilisé comme oracle social, mais comme médiateur socio-comportemental borné et comparé à une baseline explicite. »
+\end{enumerate}
+
+\section{Conclusion pédagogique}
+
+Le papier peut se défendre proprement si tu gardes la bonne ligne. Ce n'est pas un papier qui prétend résoudre toute la simulation sociale. C'est un papier qui montre comment faire un pas méthodologique raisonnable entre une matrice de contact agrégée et une médiation socio-comportementale plus riche. La force du travail n'est pas seulement dans un score final. Elle est dans la progression contrôlée du pipeline, l'auditabilité des hypothèses, et la capacité à montrer précisément ce que chaque couche apporte.
+
+\end{document}
