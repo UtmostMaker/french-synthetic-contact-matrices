@@ -88,7 +88,7 @@ class LLMBehavioralAgent:
             risk_perception=_clip01(parsed["risk_perception"]),
             trust_in_measures=_clip01(parsed["trust_in_measures"]),
             generation_mode=mode,
-            prompt_version="v2_short_json_llm",
+            prompt_version="v2_short_json_claude",
             raw_response_excerpt=str(payload)[:240],
         )
         cache_path.write_text(json.dumps(asdict(score), indent=2, ensure_ascii=False), encoding="utf-8")
@@ -144,7 +144,7 @@ class LLMBehavioralAgent:
                     payload = json.loads(response.read().decode("utf-8"))
                 self._last_request_at = time.monotonic()
                 message = _extract_message_content(payload)
-                return self._parse_embedded_json(message), f"external_chat_completion:{model_name}"
+                return self._parse_embedded_json(message), f"omnimart_chat_completion:{model_name}"
             except HTTPError as exc:
                 body = exc.read().decode("utf-8", errors="replace")
                 last_error = f"HTTP {exc.code}: {body[:240]}"

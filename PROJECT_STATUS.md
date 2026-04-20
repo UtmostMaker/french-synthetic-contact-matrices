@@ -1,21 +1,20 @@
 # Project Status
 
 ## Snapshot
-- Phase: Phase 2, ROIA-first methodology design
-- Current objective: Formalize the ROIA-first experiment plan, baselines, and validation strategy around IDEA-0001.
-- Main idea: IDEA-0001, behavioral adherence layer above French synthetic matrices
-- Backup idea: IDEA-0002, explainable uncertainty-aware French synthetic matrices
-- Next milestone: metric sheet and implementation scaffold for the non-agentic baseline core
+- Phase: Phase 4, ROIA submission hardening
+- Current objective: align manuscript, figures, artifacts and submission package on one audit-ready source of truth.
+- Main idea: structured French contact baseline plus transparent behavioral and profile-based extensions
+- Backup idea: keep the static and temporal contributions defensible even if the profile-based layer is judged exploratory
+- Next milestone: freeze the final ROIA review package with regenerated figures, compiled PDF and consistency checks
 
 ## Immediate priorities
-1. Build the durable project framework.
-2. Map the literature and datasets.
-3. Identify the most defensible research gap.
-4. Generate and score candidate paper ideas. [completed in first 20-idea landscape]
+1. Keep `artifacts/outputs/exp006_llm_agents_results.json` as the single source of truth for exp006.
+2. Ensure manuscript tables and claims are regenerated or checked against versioned JSON artifacts.
+3. Rebuild publication figures and the ROIA package from the audited artifacts.
+4. Close the main submission and reproducibility checklist items needed for review.
 
 ## Success criteria for the next milestone
-- Annotated bibliography started
-- Comparative literature matrix created
-- Dataset registry started
-- Baseline registry started
-- Decision, hypothesis, risk, and failure logs initialized
+- manuscript, README and registry aligned on the same experiment counts and metrics
+- publication figures regenerated from current artifacts
+- ROIA PDF recompiles cleanly from `manuscript/`
+- submission zip archived from the exact checked sources

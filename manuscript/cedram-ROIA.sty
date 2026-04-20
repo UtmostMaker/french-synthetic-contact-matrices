@@ -1,0 +1,582 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{cedram-ROIA}
+
+\def\currentjournaltitle{Revue Ouverte d'Intelligence Artificielle}
+\protected@edef\currentjournalpublisher{Association pour la diffusion
+  de la recherche francophone en intelligence artificielle}
+\def\currentjournalshorttitle{ROIA}
+\ISSN{pending}
+\eISSN{2967-9672}
+\CDRjournalURL{roia}
+\CDRsetmeta{license}{ccby4}
+
+\definecolor{ROIABlue}{HTML}{669895}
+
+% long{\'e}vit{\'e} !
+%
+%% g{\'e}om{\'e}tries
+\paperwidth=160mm
+\paperheight=240mm
+%
+\textwidth=120mm
+\textheight=190mm
+\ifx\undefined\pdfpagewidth\else
+\pdfpagewidth\paperwidth
+\pdfpageheight\paperheight
+\fi
+\topmargin-9mm
+\oddsidemargin-.54cm
+\evensidemargin-.54cm
+\headheight12pt
+\logoheight6pt
+\headsep24pt
+\topskip12pt
+%% Typo
+\footskip30pt
+\def\footnoterule{\kern-6\p@
+  \hrule width 2truein \kern 5.6\p@}
+\skip\footins=12pt plus 4pt minus 4pt
+\parskip=6pt plus 1pt minus .6pt
+\parindent=14pt
+\normalparindent=14pt
+\renewcommand\baselinestretch{}
+\frenchspacing
+\let\bbl@nonfrenchspacing\frenchspacing
+%% 10 pt et dimensions TeX...
+\def\@mainsize{10}\def\@ptsize{0}%
+  \def\@typesizes{%
+    \or{5}{6}\or{6}{7}\or{7}{8}\or{8}{10}\or{9}{11}%
+    \or{10}{12}% normalsize
+    \or{\@xipt}{13}\or{\@xiipt}{14}\or{\@xivpt}{17}%
+    \or{\@xviipt}{20}\or{\@xxpt}{24}}%
+  \normalsize \linespacing=\baselineskip
+\let\ept\Small
+%%%% Versions jolies -- macros sp{\'e}cifiques
+\RequirePackage{amssymb}
+\let\le\leqslant
+\let\ge\geqslant
+\let\leq\leqslant
+\let\geq\geqslant
+%%
+\RequirePackage{newtxtext,newtxmath}
+%%
+\def\pointir{\discretionary{.}{}{.\kern.3em---\kern.4em\ignorespaces}}
+% Pas de mise en romain des num{\'e}rotations intempestives !
+\def\@upn#1{#1}
+\let\cdr@up\relax
+%% Param{\`e}tres de mise en page
+%%�1re page
+\pagenumbering{arabic}%
+%% Forme des r{\'e}sum{\'e}s
+%% On autorise les coupures de pages, vu qu'ils autorisent les r{\'e}um{\'e}s trop longs !
+%\cdr@longabstractstrue
+\newif\ifexistabstract\existabstracttrue
+\def\noabstract{\global\existabstractfalse}
+\abstractmarginL30pt
+\abstractmarginR30pt
+\newdimen\abstractrulewidth
+\abstractrulewidth\textwidth
+\advance\abstractrulewidth-2\abstractmarginL
+\AtBeginDocument{%
+\ifexistabstract
+\def\cdr@preabstracthook{%
+\parskip2ptplus1pt%
+\centerline{\rule{\abstractrulewidth}{.5bp}}%
+\vspace*{6pt}
+}
+\def\cdr@postabstracthook{%
+  \unskip\unskip\par
+    \ifx\@empty\@keywords@french\else
+    \leftskip\abstractmarginL\rightskip\leftskip{\parindent\z@%
+      \if@francais\@setkeywords\else\@setaltkeywords\fi}\par\fi
+\centerline{\rule{\abstractrulewidth}{.5bp}}%
+%\noindent\rule{\textwidth}{.5bp}\par%
+\addvspace{18pt}}
+\fi}
+\def\abstractheadfont{\scshape}
+\def\@setabstracthead{{\abstractheadfont\abstractname\unskip\pointir\ignorespaces}}
+\def\@setaltabstracthead{{\abstractheadfont\altabstractname\unskip\pointir\ignorespaces}}
+\def\@setabstractEShead{{\abstractheadfont\abstractESname\unskip\pointir\ignorespaces}}
+\def\@setabstract@first{\if@francais\@setabstract\else\@setaltabstract\fi}
+\let\@setabstract@last\relax
+\def\setotherabstracts{%
+\parskip2ptplus1pt%
+\centerline{\rule{\abstractrulewidth}{.5bp}}%
+\vspace*{6pt}
+\leftskip\abstractmarginL\rightskip\leftskip{\parindent\z@\if@francais\@setaltabstract\@setaltkeywords\else\@setabstract\@setkeywords\fi}\par
+\vspace{4pt}
+\leftskip\abstractmarginL\rightskip\leftskip{\parindent\z@\ifx\@abstractES\@empty\else\@setabstractES\fi
+  \ifx\@keywordsES\@empty\else\@setkeywordsES\fi}\par
+\centerline{\rule{\abstractrulewidth}{.5bp}}%
+\par}
+
+%% Style des pages courantes
+\def\ps@roia{%\ps@empty
+  \def\@evenhead{%
+    \def\thanks{\protect\thanks@warning}%
+    {\Small\hfil\leftmark}{}{}\hfil}%
+  \def\@oddhead{%
+    \def\thanks{\protect\thanks@warning}%
+    \hfil{\Small\itshape\rightmark}{}{}\hfil}%
+  \def\@evenfoot{\normalfont\hfill-- \thepage{} --\hfill}%
+  \def\@oddfoot{\normalfont\hfill-- \thepage{} --\hfill}%
+  \let\@mkboth\markboth
+}%
+\let\ps@plain\ps@roia
+\pagestyle{roia}%
+%% Style de la premi{\`e}re page
+\def\ps@firstpage{\ps@plain
+  \def\@oddfoot{%\normalfont\hfill-- \thepage{} --\hfill
+    \global\topskip\normaltopskip}%
+  \let\@evenfoot\@oddfoot
+  \def\@oddhead{\@serieslogo\hss}%
+  \let\@evenhead\@oddhead % in case an article starts on a left-hand page
+}%
+%% Identificiation article premi{\`e}re page
+\def\NoLogo{\xdef\article@logo{}}
+\def\@logofont{\Small}
+\def\article@logo{%
+  \set@logo{%
+    {%\large
+%      \fontseries{b}\fontsize{10}{10}\selectfont
+      \bfseries\normalsize\currentjournaltitle}\\[2pt]
+      %\kern-.5mm\includegraphics[width=7cm]{ROIA-horizontitre}}\\
+    \ifcdr@m@nuscript%
+ 	Brouillon d'article, version du \today
+    \else
+    \ifnum\currentvolume>\z@%
+    Volume~{\currentvolume}, \no\currentissue, \currentyear,
+    % \strut\hfill pp.~
+    \pageinfo\par\fi\fi
+  }%
+}
+%% Pr{\'e}sentation du titre
+\def\@settitle{%
+  \vspace*{-1.6cm}
+
+  \bgroup
+  \hsize.9\textwidth
+  \raggedright
+  \vglue2mm
+  \normalfont\Huge\bfseries
+  \@title
+  \vskip10pt plus 4pt minus 3pt
+  \egroup
+}
+\def\@setsubtitle{%
+  \bgroup
+  \raggedright
+  \vglue-3mm
+  \normalfont\huge\bfseries
+  \@subtitle
+  \vskip10pt plus 3pt minus 4pt
+  \egroup
+}
+%% Pr{\'e}sentation des auteurs
+% \if@francais
+ \def\@@and{\unskip,}%
+%  \else
+ % \def\@@and{, }%
+ % \fi
+
+%\def\@@and{, }
+ \def\author@andify{%
+   \nxandlist {\unskip ,\penalty-2 \space\cdr@count@hasaddr=\z@\ignorespaces}%
+     {\unskip , \cdr@count@hasaddr=\z@}%
+     {\unskip , \penalty-1  \cdr@count@hasaddr=\z@}%
+ }
+%\def\and{}
+\newcount\cdr@thankcount
+\cdr@thankcount=\z@
+\def\@alph#1{\ifcase#1\or a\or b\or c\or d\else\@ialph{#1}\fi}
+\def\@ialph#1{\ifcase#1\or \or \or \or \or e\or f\or g\or h\or i\or j\or
+ k\or l\or m\or n\or o\or p\or q\or r\or s\or t\or u\or v\or w\or x\or
+ y\or z\or aa\or bb\or cc\or dd\or ee\or ff\or gg\or hh\or ii\or jj\or
+ kk\or ll\or mm\or nn\or oo\or pp\or qq\or rr\or ss\or tt\or uu\or
+ vv\or ww\or xx\or yy\or zz\else\@ctrerr\fi}
+\let\IsCorresp\relax
+\newcount\CorrA\CorrA=\z@
+\advance\@titlebotskip-7mm
+\def\display@orcid#1{%
+  \href{https://orcid.org/#1}{%
+    \raisebox{.7ex}[0pt][0pt]{%
+%      \includegraphics[height=1.1ex]{orcid.png}{}%
+      \includegraphics[height=1.1ex]{orcid-bw.png}}%
+%{\usefont{TU}{academicons}{m}{n}\symbol{"E9D9}}}%
+    }
+}
+\newcount\cdr@count@hasaddr\cdr@count@hasaddr=\z@%
+\def\@setauthors{%
+  \begingroup
+  \raggedright
+  \def\CDRorcid##1{\kern1pt\display@orcid{##1}}%
+  \def\IsCorresp{\textsuperscript{$*$,}\global\advance\CorrA\@ne\relax}%
+  \def\thanks{\protect\thanks@warning}%
+  \author@andify\authors
+  \def\\{\space}%
+  \def\Same{\same}%
+  \def\New{\new}%
+  \def\hasaddress##1##2{%
+    \ifnum\cdr@count@hasaddr=\z@\kern.1em\fi
+    \@ifempty{##1}{% cas pas sameaddress
+%%�increment de compteur
+\global\advance\cdr@thankcount\@ne%
+\textsuperscript{\ifnum\cdr@count@hasaddr>\z@, \fi
+  \textit{\@alph\cdr@thankcount}}%
+}{% cas sameaddress
+\def\What{##1}\ifx\What\Same
+%%�pas d'increment de compteur
+\textsuperscript{\ifnum\cdr@count@hasaddr>\z@, \fi
+  \textit{\@alph\cdr@thankcount}}%
+\else\ifx\What\New
+%%�increment de compteur
+\global\advance\cdr@thankcount\@ne%
+\textsuperscript{\ifnum\cdr@count@hasaddr>\z@, \fi
+  \textit{\@alph\cdr@thankcount}}%
+\else
+%% mode manuel
+\count@=##1\relax
+\textsuperscript{\ifnum\cdr@count@hasaddr>\z@, \fi
+  \textit{\@alph\count@}}%
+\fi\fi}\advance\cdr@count@hasaddr\@ne}%
+  \large\textbf{\authors}\hfill\break%
+  \ifx\@empty\contribs
+  \else
+    \\\penalty-3 \space \@setcontribs
+    \@closetoccontribs
+    \fi
+    \par
+  \endgroup
+}
+\newcount\cdr@notes@adress\cdr@notes@adress\z@
+\def\@setafterauthor{%
+  \vglue-3mm%
+%  \hspace*{0pt}%
+\noindent\hspace*{\abstractmarginL}\begin{minipage}[t]{10cm}
+%   \leftskip\normalparindent
+  \raggedright
+  \normalfont\Small
+  \@afterauthor\par
+ \end{minipage}
+  \vskip2pt plus 3pt minus 1pt
+}
+\def\@afterauthor{\ifx\@empty\addresses \else\@setaddresses\par
+\ifcdr@GroupEmails\@setemails\par\fi\fi}
+\def\@setaddresses{%\par
+  \begingroup
+  \cdr@thankcount\z@
+   \url@samestyle
+   \def\affiliationonly##1{##1}%
+   \def\snailmailonly##1{\relax}%
+   \def\lastname##1{\relax}%
+   \def\firstname##1{\relax}%
+   \def\hasthanks##1{##1\@addpunct.\@par}
+   \def\hasaddress##1{\relax}%
+   \def\author##1{%\ifnum\cdr@notes@adress=\z@\else\@@par\indent\fi\global\advance\cdr@notes@adress1
+     % \textsuperscript{\@alph\cdr@notes@adress}\kern.2em
+     \def\\{ \ignorespaces}\ignorespaces}%
+   \def\address##1##2{\begingroup
+   \@ifempty{##1}{% cas pas addressSameAs
+     \ifnum\cdr@thankcount>\z@\par\vskip4pt\fi\global\advance\cdr@thankcount\@ne\global\cdr@notes@adress=\z@%
+     \textsuperscript{\textit{\@alph\cdr@thankcount}}\kern.2em{\ignorespaces##2\unskip}}{}\endgroup}%
+   \def\curraddr##1##2{\begingroup
+     \@ifnotempty{##2}{\@@par\curraddrname{}\textit{\thsp:} %
+       {\ignorespaces##2\unskip}\endgroup}}%
+   \def\email##1##2{%
+     \ifcdr@GroupEmails\else
+     \begingroup
+     \ifnum\cdr@notes@adress=\z@%
+     \@ifnotempty{##2}{\@@par{\itshape\emailaddrname{}%
+       \thsp: }%
+     \href{mailto:##2}{##2}\@ifnotempty{##1}{ (##1)}}%
+     \else,
+     \@ifnotempty{##2}{\href{mailto:##2}{##2}\@ifnotempty{##1}{
+         (##1)}}%
+       \fi\global\advance\cdr@notes@adress1%
+   \endgroup\fi
+   }%
+   \def\urladdr##1##2{\begingroup
+%     \def~{\char`\~}%
+     \@ifnotempty{##2}{\@@par\urladdrname{}\textit{\thsp:} %
+       \url{##2}}\endgroup}%
+   \addresses\@addpunct.%
+   \endgroup
+ }
+\def\@setemails{%\par
+  \begingroup
+   \cdr@thankcount\z@
+   \url@samestyle
+   \def\affiliationonly##1{\relax}%
+   \def\snailmailonly##1{\relax}%
+   \def\lastname##1{\relax}%
+   \def\firstname##1{\relax}%
+   \def\hasthanks##1{\relax}
+   \def\hasaddress##1{\relax}%
+   \def\author##1{}%\ifnum\cdr@thankcount=\z@\else, \fi}
+   \def\address##1##2{\relax}%
+   \def\curraddr##1##2{\relax}%
+   \def\email##1##2{%% Showing emails authorwise?
+     \ifcdr@GroupEmails
+     \begingroup
+     \@ifnotempty{##2}{\ifnum\cdr@thankcount=\z@\else, \fi\href{mailto:##2}{##2}\@ifnotempty{##1}{ \mbox{(##1)}}}\endgroup\fi
+     \global\advance\cdr@thankcount\@ne}%
+   \def\urladdr##1##2{\relax}%
+   \sbox\@tempboxa{\addresses\xdef\CDRess{\ifnum\cdr@thankcount>\@ne\relax s\fi}}%
+   \ifdim\wd\@tempboxa>1em\relax
+   \vskip2pt\@@par\textit{\emailsaddrname{}\CDRess\thsp:}
+   \cdr@thankcount\z@
+   \addresses\@addpunct.%
+   \fi
+   \endgroup
+ }
+%%%% Fin pres aut
+\def\@setdedicatory{%
+	\vtop{\raggedleft{\large\itshape\@dedicatory\@@par}}}
+\advance\@titlebotskip-7mm
+%% Notes
+\def\@makefnmark{%
+  \leavevmode
+  \hbox{\@textsuperscript{\normalfont(\@thefnmark)}}}%
+\AtBeginDocument{\settoheight{\footnotesep}{\footnotesize M$^{(1)}$}}
+% \def\@makefnmark{%
+%   \leavevmode
+%   \raise.9ex\hbox{\fontsize\sf@size\z@\normalfont(\@thefnmark)\kern.15em}\ignorespaces%
+% }
+\def\@makequasifnmark#1{%
+  \def\@thefnmark{#1}%
+  \@makefnmark
+}
+\long\def\@quasifootnotetext#1#2{%
+  \insert\footins{%
+    \normalfont\footnotesize
+    \interlinepenalty\interfootnotelinepenalty
+    \splittopskip\footnotesep \splitmaxdepth \dp\strutbox
+    \floatingpenalty\@MM \hsize\columnwidth
+    \@parboxrestore \parindent\normalparindent \sloppy
+    \@ifnotempty{#1}{\@makequasifnmark{#1}}%
+      \rule\z@\footnotesep{\raggedright#2\unskip\strut\par}}}
+%
+%% Notes de la premi{\`e}re page
+\def\@setdates{%
+\vglue4mm
+\rightline{\itshape\Small
+\ifx\@empty\@datereceived\else\@setdatereceived
+\ifx\@empty\@daterevised\else\@setdaterevised\fi
+\ifx\@empty\@dateaccepted Manuscrit non accept{\'e} !\else\@setdateaccepted\fi\fi}}
+\if@francais
+\def\curraddrname{Adresse actuelle}
+\def\emailsaddrname{Courriel}
+\else
+\def\curraddrname{Current address}
+\def\emailsaddrname{E-mail}
+\fi
+\def\emailaddrname{E-mail}
+\def\urladdrname{URL}
+
+\def\ProposedBy#1{\def\cdr@proposedby{#1}}%
+\let\cdr@proposedby\@empty
+\def\@setproposedby{%
+ Article propos{\'e} par \cdr@proposedby.}
+
+ \def\@adminfootnotes{}%
+\def\@setthanks{\def\thanks##1{##1\@addpunct.}%
+  \thankses}%
+\def\@setsubjclass{%
+  {\abstractfont{\abstractheadfont\subjclassname\pointir}\space\@subjclass\@addpunct.}}
+\def\@setkeywords{%
+    \global\kwd@count=\z@%
+    {\abstractfont{\abstractheadfont \keywordsname\pointir}\space \@keywords\unskip\@addpunct.}}
+\def\@setaltkeywords{%
+    \global\kwd@count=\z@%
+    {\abstractfont{\abstractheadfont \altkeywordsname\pointir}\space \@altkeywords\unskip\@addpunct.}}
+\def\@setkeywordsES{%
+   {\abstractfont{\abstractheadfont \keywordsESname\pointir}\space \@keywordsES\@addpunct.}}
+\if@francais
+ \def\keywordsname{Mots-cl{\'e}s}
+ \def\altkeywordsname{Keywords}
+ \def\keywordsESname{Palabras claves}
+ \def\abstractESname{Resumen}
+ \def\subjclassname{Classification math.}
+\else
+ \def\altkeywordsname{Mots-cl{\'e}s}
+ \def\keywordsname{Keywords}
+ \def\subjclassname{Math. classification}
+\fi
+\@xp\let\csname subjclassname@2000\endcsname \subjclassname
+%% Dates
+\RequirePackage[french,orig]{isodate}
+\def\@setdatereceived{%
+%  \par
+  Manuscrit re{\c c}u le \printdate\@datereceived, }%
+\def\@setdaterevised{%
+%  \newline
+  r{\'e}vis{\'e} le \printdate\@daterevised, }%
+\def\@setdateaccepted{%
+%  \newline
+  accept{\'e} le \printdate\@dateaccepted.}%
+%
+%%�final
+\def\enddoc@text{\@setdates}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% sections
+% \section remplace TITRE
+\renewcommand\section{\@startsection{section}{1}{\normalparindent}%
+{14pt plus 3pt minus 2pt}{1sp}
+{\normalfont\bfseries\scshape\raggedright}}
+%
+\renewcommand\subsection{\@startsection{subsection}{2}{\normalparindent}%
+{12.5pt plus 3pt minus 2pt}{1sp}
+{\normalfont\scshape\raggedright}}
+%
+\renewcommand\subsubsection{\@startsection{subsubsection}{3}{\normalparindent}%
+{12.5pt plus 3pt minus 2pt}{1sp}
+{\normalfont\itshape}}
+%
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\parindent}%
+{3mm}{-.2em}{\normalfont\scshape}}
+%
+\newcommand\paragraphc{\@startsection{paragraph}{4}{\parindent}%
+{3mm}{1sp}{\normalfont\scshape}}
+%
+\renewcommand\subparagraph{\@startsection{subparagraph}{5}{\parindent}%
+{3mm}{-.2em}{\normalfont\itshape}}
+%
+\newcommand{\subparagraphc}{\@startsection{subparagraph}{5}{\parindent}%
+{3mm}{1sp}{\normalfont\itshape}}
+\renewcommand{\@seccntformat}[1]{{\upshape\csname the#1\endcsname}.\hspace{0.5em}\ignorespaces}
+\def\cdr@secpoint{\pointir}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+%% Biblio
+\AtBeginDocument{\bibliographystyle{cdraifplain}}
+\renewcommand{\@bibtitlestyle}{%
+  \section*{\bibname}%
+}
+%% Th{\'e}or{\`e}mes
+\def\th@plain{%
+  \thm@bodyfont{\normalfont\itshape}%
+  \thm@headfont{\normalfont\scshape}%
+  \thm@notefont{\normalfont}%
+  \thm@headpunct{\pointir}%
+  \thm@headsep 0\p@\relax
+  \let\thm@indent\indent
+  \def\thm@space@setup{%
+    \thm@preskip=5pt
+    \thm@postskip=\thm@preskip}%
+  \itshape
+}
+\def\th@remark{%
+  \thm@bodyfont{\normalfont}%
+  \thm@headfont{\normalfont\itshape}%
+  \thm@notefont{\normalfont\itshape}%
+  \thm@headpunct{\pointir}%
+  \thm@headsep 0\p@\relax
+  \let\thm@indent\indent
+  \def\thm@space@setup{%
+    \thm@preskip=5pt
+    \thm@postskip=\thm@preskip}%
+}
+\let\th@definition\th@plain
+% Versions coup{\'e}es -- sans pointir !
+ \def\th@plainc{%
+   \th@plain
+   \thm@headpunct{.}%
+   \def\thmheadnl{\newline\indent}%
+   \thm@headsep\z@skip
+ }
+ \def\th@remarkc{%
+   \th@remark
+   \thm@headpunct{.}%
+   \def\thmheadnl{\newline\indent}%
+   \thm@headsep\z@skip
+ }
+\AtBeginDocument{%
+\theoremstyle{plainc}%
+  \newtheorem{theoc}[\cdr@thm]{\theoname}%
+  \newtheorem{propc}[\cdr@thm]{\propname}%
+  \newtheorem{conjc}[\cdr@thm]{\conjname}%
+  \newtheorem{coroc}[\cdr@thm]{\coroname}%
+  \newtheorem{lemmc}[\cdr@thm]{\lemmname}%
+  \newtheorem{defic}[\cdr@thm]{\definame}%
+  \newtheorem*{theoc*}{\theoname}%
+  \newtheorem*{propc*}{\propname}%
+  \newtheorem*{conjc*}{\conjname}%
+  \newtheorem*{coroc*}{\coroname}%
+  \newtheorem*{lemmc*}{\lemmname}%
+  \newtheorem*{defic*}{\definame}%
+  \theoremstyle{remarkc}%
+  \newtheorem{notac}[\cdr@thm]{\notaname}%
+  \newtheorem{notasc}[\cdr@thm]{\notasname}%
+  \newtheorem{remac}[\cdr@thm]{\remaname}%
+  \newtheorem{remasc}[\cdr@thm]{\remasname}%
+  \newtheorem{exemc}[\cdr@thm]{\exemname}%
+  \newtheorem{exemsc}[\cdr@thm]{\exemsname}%
+  \newtheorem*{notac*}{\notaname}%
+  \newtheorem*{notasc*}{\notasname}%
+  \newtheorem*{remac*}{\remaname}%
+  \newtheorem*{remasc*}{\remasname}%
+  \newtheorem*{exemc*}{\exemname}%
+  \newtheorem*{exemsc*}{\exemsname}%
+\theoremstyle{plain}%
+}%
+%
+\OneNumberAllTheorems
+\NumberTheoremsIn{section}
+%\def\proofheadfont{\itshape}
+\renewenvironment{proof}[1][\proofname]{\par
+  \pushQED{\qed}%
+  \normalfont \topsep\thm@preskip
+  \trivlist
+  \item\hskip\parindent
+        \itshape
+        #1\@addpunct{\pointir}\ignorespaces\normalfont
+}{%
+  \popQED\endtrivlist\@endpefalse
+}
+\newenvironment{proofc}[1][\proofname]{\par
+  \pushQED{\qed}%
+  \normalfont \topsep\thm@preskip
+  \trivlist
+  \item\hskip\parindent
+        \itshape
+        #1\@addpunct{.}\ignorespaces\normalfont
+}{%
+  \popQED\endtrivlist\@endpefalse
+}
+%
+%% Floats
+ \def\@captionheadfont{\normalfont}
+ \def\@captionfont{\normalfont}
+\newskip\abovecaptionskip \abovecaptionskip=12pt \relax
+\newskip\belowcaptionskip \belowcaptionskip=12pt \relax
+\newdimen\captionindent \captionindent=\normalparindent
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+%% pages volumes
+\ifcdr@volume
+\def\MakeFront{%% ce qui est quasi-constant
+  \cdr@input{front}%
+  %% Ce qui d{\'e}pend de la revue, {\`a} d{\'e}finir dans revue.cfg
+  \@makeFront}
+\def\@makeFront{%
+\pagenumbering{arabic}%
+\global\tkkp={\setpage[roman]}%
+}
+\def\enddoc@text{}
+\fi
+\def\@tocpagenum#1{\hss{#1}}
+\let\authorSOM@andify\author@andify
+%\ifcdr@recup
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\M}{\mathbb{M}}
+\newcommand{\T}{\mathbb{T}}
+%\fi

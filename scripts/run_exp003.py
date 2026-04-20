@@ -320,6 +320,30 @@ def build_assessment(
     }
 
 
+def _format_socialcov_label(period: Any) -> str:
+    month_lookup = {
+        1: "janv.",
+        2: "févr.",
+        3: "mars",
+        4: "avr.",
+        5: "mai",
+        6: "juin",
+        7: "juil.",
+        8: "août",
+        9: "sept.",
+        10: "oct.",
+        11: "nov.",
+        12: "déc.",
+    }
+    regime_lookup = {
+        "confinement": "confinement",
+        "mask_mandate": "masque",
+        "risk_relaxation": "relâchement",
+    }
+    dt = datetime.fromisoformat(period.representative_date)
+    return f"{month_lookup[dt.month]} {dt.year}\n{regime_lookup.get(period.policy_regime, period.policy_regime)}"
+
+
 def generate_figures(
     bundle: dict[str, Any],
     observed_prevention: np.ndarray,
@@ -331,35 +355,45 @@ def generate_figures(
 ) -> None:
     PREVENTIVE_FIGURE_PATH.parent.mkdir(parents=True, exist_ok=True)
     coviprev_labels = [wave.wave.split(":")[0].replace("vague", "V").strip() for wave in bundle["coviprev"]]
-    socialcov_labels = [f"P{period.order_index}" for period in bundle["socialcov"]]
+    socialcov_labels = [_format_socialcov_label(period) for period in bundle["socialcov"]]
+    plt.style.use("seaborn-v0_8-whitegrid")
+    plt.rcParams.update(
+        {
+            "axes.titlesize": 12,
+            "axes.labelsize": 10,
+            "xtick.labelsize": 8.5,
+            "ytick.labelsize": 8.5,
+            "legend.fontsize": 9,
+        }
+    )
 
     plt.figure(figsize=(10, 4.8))
     x = np.arange(len(observed_prevention))
-    plt.plot(x, observed_prevention, marker="o", linewidth=2.2, label="Observé (CoviPrev)")
-    plt.plot(x, predicted_prevention, marker="s", linewidth=2.0, label="Simulé comportemental")
-    plt.plot(x, static_prevention, linestyle="--", linewidth=1.5, label="Référence statique")
+    plt.plot(x, observed_prevention, marker="o", linewidth=2.2, color="#4e79a7", label="Observé (CoviPrev)")
+    plt.plot(x, predicted_prevention, marker="s", linewidth=2.0, color="#f28e2b", label="Couche comportementale")
+    plt.plot(x, static_prevention, linestyle="--", linewidth=1.5, color="#59a14f", label="Référence statique")
     plt.xticks(x, coviprev_labels, rotation=45, ha="right")
     plt.ylabel("Indice de prévention")
     plt.title("CoviPrev : prévention observée vs simulée")
-    plt.ylim(0.45, 0.90)
+    plt.ylim(0.40, 0.90)
     plt.grid(alpha=0.25)
     plt.legend(frameon=False)
     plt.tight_layout()
-    plt.savefig(PREVENTIVE_FIGURE_PATH, dpi=200)
+    plt.savefig(PREVENTIVE_FIGURE_PATH, dpi=300)
     plt.close()
 
-    plt.figure(figsize=(8.8, 4.8))
+    plt.figure(figsize=(9.6, 5.2))
     x = np.arange(len(observed_contacts))
-    plt.plot(x, observed_contacts, marker="o", linewidth=2.2, label="Observé (SocialCov)")
-    plt.plot(x, predicted_contacts, marker="s", linewidth=2.0, label="Simulé comportemental")
-    plt.plot(x, static_contacts, linestyle="--", linewidth=1.5, label="Référence statique")
-    plt.xticks(x, socialcov_labels)
+    plt.plot(x, observed_contacts, marker="o", linewidth=2.2, color="#4e79a7", label="Observé (SocialCov)")
+    plt.plot(x, predicted_contacts, marker="s", linewidth=2.0, color="#f28e2b", label="Couche comportementale")
+    plt.plot(x, static_contacts, linestyle="--", linewidth=1.5, color="#59a14f", label="Référence statique")
+    plt.xticks(x, socialcov_labels, rotation=20, ha="right")
     plt.ylabel("Contacts relatifs au pré-pandémique")
     plt.title("SocialCov : changements de contacts par période")
     plt.grid(alpha=0.25)
     plt.legend(frameon=False)
     plt.tight_layout()
-    plt.savefig(CONTACT_FIGURE_PATH, dpi=200)
+    plt.savefig(CONTACT_FIGURE_PATH, dpi=300)
     plt.close()
 
 

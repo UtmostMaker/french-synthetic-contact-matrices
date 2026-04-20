@@ -1,0 +1,187 @@
+protocol_id: exp009_shs_llm_protocol_v3_mobility
+prompt_version: v3_mobility_calibrated_latent_mediator
+research_objective: >-
+  Estimer, pour chaque profil socio-demographique francais et chaque regime sanitaire,
+  un vecteur de variables latentes SHS utilise ensuite comme mediation explicite
+  dans un modele de diffusion epidemique, avec une attention renforcee a la plausibilite
+  de la mobilite effective.
+scientific_rationale:
+  - Les sorties LLM ne sont pas traitees comme des contacts vrais, mais comme des mediateurs socio-comportementaux structures.
+  - "Les ecarts entre profils ne doivent provenir que des facteurs fournis dans le prompt: occupation, age, foyer, flexibilite numerique, contraintes de mobilite et vulnerabilites."
+  - "La variable `mobility_reduction` doit representer une mobilite effectivement realisee, pas une volonte normative de bien suivre les mesures."
+  - Les variables doivent etre comparables entre profils et entre regimes grace a une meme echelle [0,1] et a des ancres explicites.
+scoring_principles:
+  - Utiliser uniquement les informations presentes dans le protocole, le profil et le regime sanitaire.
+  - Conserver une coherence temporelle entre regimes. La fatigue politique doit etre faible au premier confinement et peut augmenter ensuite.
+  - Distinguer volonte de protection et capacite pratique a se conformer.
+  - Ne jamais encoder d'inegalites non justifiees. Toute difference doit etre traçable a des contraintes materielles, familiales, professionnelles ou d'age.
+  - Favoriser des scores plausibles et calibres plutot que des contrastes spectaculaires.
+  - "Pour `mobility_reduction`, raisonner en reduction effective des deplacements quotidiens et non en desir de protection. Une bonne adherence preventive n'implique pas automatiquement une forte baisse de mobilite."
+  - "Pour `mobility_reduction`, donner un poids fort aux contraintes materielles: travail en presentiel, contraintes familiales, faible flexibilite numerique et pression economique limitent la baisse effective de mobilite."
+  - "Sous les regimes moderes ou relaches, rester conservateur sur `mobility_reduction`. Des scores tres eleves y sont rares et doivent etre explicitement justifies par les seules contraintes du prompt."
+  - "Regime mobility plausibility guide: `pre_pandemic_baseline` le plus souvent entre 0.00 et 0.10, `first_lockdown` souvent entre 0.55 et 0.80, `deconfinement_summer_2020` souvent entre 0.05 et 0.25, `second_wave_restrictions` souvent entre 0.20 et 0.40, `curfew_winter_2020_2021` souvent entre 0.20 et 0.38, `pass_sanitaire` souvent entre 0.00 et 0.15."
+  - "Pour `mobility_reduction`, utiliser les bords superieurs de ces fourchettes seulement si le profil a une vraie capacite de retrait du travail, des interactions et des deplacements."
+anti_bias_rules:
+  - Ne pas utiliser d'attributs absents du prompt.
+  - Pas de jugement moral sur les groupes sociaux.
+  - Pas de stereotypes culturels, ethniques, religieux ou territoriaux.
+  - Ne pas supposer qu'un groupe social est automatiquement anti-mesures ou pro-mesures.
+latent_variables:
+  adherence_level:
+    definition: Intensite globale de l'adoption des comportements de protection.
+    anchor_0: Tres faible adoption, gestes preventifs rarement appliques.
+    anchor_05: Adoption intermittente et contextuelle.
+    anchor_1: Adoption forte et reguliere des comportements preventifs.
+  risk_perception:
+    definition: Perception subjective de la menace sanitaire.
+    anchor_0: Risque perçu comme faible ou lointain.
+    anchor_05: Risque reconnu mais pas omnipresent.
+    anchor_1: Risque perçu comme eleve et immediat.
+  trust_in_authorities:
+    definition: Confiance operationnelle dans les institutions et les mesures sanitaires.
+    anchor_0: Faible confiance et faible credibilite accordee aux mesures.
+    anchor_05: Confiance mitigee ou conditionnelle.
+    anchor_1: Confiance forte dans la pertinence et la legitimite des mesures.
+  mobility_reduction:
+    definition: Reduction effective de la mobilite quotidienne par rapport a la normale, au sens des deplacements reellement effectues.
+    anchor_0: Mobilite quasi inchangée.
+    anchor_05: Mobilite reduite de facon nette mais encore frequente.
+    anchor_1: Forte reduction effective des deplacements, reservee aux situations de retrait massif reel.
+  compliance_capacity:
+    definition: Capacite materielle et organisationnelle a respecter les mesures.
+    anchor_0: Capacite tres faible, forte impossibilite pratique.
+    anchor_05: Capacite partielle ou fragile.
+    anchor_1: Capacite elevee a respecter les mesures sans cout pratique majeur.
+  economic_constraint:
+    definition: Pression economique ou professionnelle poussant a maintenir des activites exposees.
+    anchor_0: Faible pression economique ou forte possibilite de protection.
+    anchor_05: Pression reelle mais partiellement contournable.
+    anchor_1: Pression forte obligeant a maintenir activite et mobilite.
+  social_pressure:
+    definition: Pression relationnelle ou normative en faveur des interactions hors domicile.
+    anchor_0: Faible pression sociale vers les interactions externes.
+    anchor_05: Pression sociale moderee.
+    anchor_1: Forte pression a maintenir la sociabilite hors domicile.
+  household_pressure:
+    definition: Pression domestique, charge de care ou promiscuité limitant l'application des mesures.
+    anchor_0: Foyer peu contraignant pour l'application des mesures.
+    anchor_05: Charge domestique reelle mais gerable.
+    anchor_1: Forte pression domestique ou promiscuité perturbant nettement la protection.
+  policy_fatigue:
+    definition: Usure psychologique et comportementale face a la repetition des mesures.
+    anchor_0: Pas ou tres peu de fatigue.
+    anchor_05: Fatigue perceptible mais contenue.
+    anchor_1: Fatigue elevee, adherence menacee par l'usure.
+  mask_adherence:
+    definition: Respect specifique du port du masque quand il est recommande ou impose.
+    anchor_0: Port du masque rare ou evitement important.
+    anchor_05: Port du masque inegal selon les contextes.
+    anchor_1: Port du masque tres regulier et fiable.
+  isolation_propensity:
+    definition: Propension a s'isoler ou a s'auto-restreindre en cas de risque perçu.
+    anchor_0: Peu de retrait volontaire des interactions.
+    anchor_05: Isolement selectif et partiel.
+    anchor_1: Retrait volontaire fort face au risque.
+response_schema:
+  type: object
+  additionalProperties: false
+  required:
+    - adherence_level
+    - risk_perception
+    - trust_in_authorities
+    - mobility_reduction
+    - compliance_capacity
+    - economic_constraint
+    - social_pressure
+    - household_pressure
+    - policy_fatigue
+    - mask_adherence
+    - isolation_propensity
+  properties:
+    adherence_level:
+      type: number
+      minimum: 0
+      maximum: 1
+    risk_perception:
+      type: number
+      minimum: 0
+      maximum: 1
+    trust_in_authorities:
+      type: number
+      minimum: 0
+      maximum: 1
+    mobility_reduction:
+      type: number
+      minimum: 0
+      maximum: 1
+    compliance_capacity:
+      type: number
+      minimum: 0
+      maximum: 1
+    economic_constraint:
+      type: number
+      minimum: 0
+      maximum: 1
+    social_pressure:
+      type: number
+      minimum: 0
+      maximum: 1
+    household_pressure:
+      type: number
+      minimum: 0
+      maximum: 1
+    policy_fatigue:
+      type: number
+      minimum: 0
+      maximum: 1
+    mask_adherence:
+      type: number
+      minimum: 0
+      maximum: 1
+    isolation_propensity:
+      type: number
+      minimum: 0
+      maximum: 1
+system_prompt_template: |-
+  You are a scientific scoring engine used in an epidemiological behavior experiment.
+  Your job is to score latent socio-behavioral variables for one French socio-demographic profile under one public-health regime.
+  Follow the protocol exactly, keep all values in [0,1], and output only valid JSON matching the provided schema.
+  Do not add explanations.
+user_prompt_template: |-
+  PROTOCOL ID: {protocol_id}
+  PROMPT VERSION: {prompt_version}
+
+  RESEARCH OBJECTIVE
+  {research_objective}
+
+  SCIENTIFIC RATIONALE
+  {scientific_rationale_block}
+
+  SCORING PRINCIPLES
+  {scoring_principles_block}
+
+  ANTI-BIAS RULES
+  {anti_bias_rules_block}
+
+  PROFILE
+  - label: {profile_label}
+  - age_range: {age_range}
+  - occupation: {occupation}
+  - household_type: {household_type}
+  - typical_settings: {settings}
+  - vulnerability_factors: {vulnerability_factors}
+  - trust_proxy: {trust_proxy}
+  - preventive_behavior_multiplier: {preventive_multiplier}
+  - mobility_constraint: {mobility_constraint}
+  - digital_flexibility: {digital_flexibility}
+
+  POLICY REGIME
+  - regime_key: {policy_regime}
+  - regime_label: {policy_label}
+  - regime_severity: {policy_severity}
+
+  VARIABLE RUBRIC
+  {variable_rubric_block}
+
+  OUTPUT INSTRUCTION
+  Return one JSON object only, with the exact required keys and one numeric value in [0,1] for each key.

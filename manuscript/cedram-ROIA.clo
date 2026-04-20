@@ -1,0 +1,6 @@
+\setpublname[Revue ouv. IA]{Revue ouverte d'intelligence artificielle}%
+\let\iftagsleft@\iffalse 
+\cdr@uppercaseheadauthorsfalse
+\cdr@EqCountersInSectionstrue
+\cdr@uppercaseheadtitlesfalse
+\PassOptionsToPackage{reqno}{amsmath}%

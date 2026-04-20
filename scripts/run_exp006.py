@@ -294,7 +294,7 @@ def run_experiment(config: dict[str, Any]) -> dict[str, Any]:
             "best_aligned_profiles": [item["profile_key"] for item in profile_errors[:3]],
             "least_aligned_profiles": [item["profile_key"] for item in profile_errors[-3:]],
             "honest_summary": (
-                "The experiment now uses real external LLM calls when LLM_API_KEY is available. "
+                "The experiment now uses real external Claude Sonnet calls when LLM_API_KEY is available. "
                 "Profile targets remain indirect because the public CoviPrev extract used here is national rather than fully stratified by socio-professional category, so the profile-level fit should be read as plausibility calibration rather than identification."
             ),
         },

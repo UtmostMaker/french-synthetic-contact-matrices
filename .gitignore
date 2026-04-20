@@ -20,12 +20,23 @@ data/processed/
 *.bbl
 *.bcf
 *.blg
+*.cdrsom
 *.fdb_latexmk
 *.fls
 *.log
 *.out
+*.pdf
 *.run.xml
 *.synctex.gz
+*backup*.tex
+
+# Submission bundles and ad hoc release archives
+delivery_to_utmostsenior_*/
+delivery_to_utmostsenior_*.zip
+submission_email_minimal_*/
+submission_email_minimal_*.zip
+submission_package_roia_*/
+submission_package_roia_*.zip
 
 # OS/editor
 .DS_Store
@@ -41,3 +52,8 @@ scripts/send_roia_package_email.py
 
 # Local vendored runtime helpers
 .vendor/
+docs/operations/
+docs/submission/
+docs/ideas/
+status/
+scripts/__pycache__/

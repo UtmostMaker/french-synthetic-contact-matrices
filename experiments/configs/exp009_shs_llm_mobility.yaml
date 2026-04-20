@@ -1,0 +1,57 @@
+experiment_name: exp009_shs_llm_mobility
+policy_order:
+  - pre_pandemic_baseline
+  - first_lockdown
+  - deconfinement_summer_2020
+  - second_wave_restrictions
+  - curfew_winter_2020_2021
+  - pass_sanitaire
+model:
+  provider_label: ClaudeCLI-haiku-4-5
+  backend: claude_cli
+  name: claude-haiku-4-5-20251001
+  fallback_models: []
+  cli_command: claude
+  cli_permission_mode: bypassPermissions
+  cli_output_format: json
+  cli_tools: ''
+  cli_max_budget_usd: null
+  auto_wait_on_rate_limit: true
+  rate_limit_reset_buffer_seconds: 20
+  rate_limit_poll_seconds: 30
+  rate_limit_max_wait_seconds: 21600
+  protocol_path: experiments/protocols/exp009_shs_llm_protocol_v3_mobility.yaml
+  audit_dir: artifacts/audits/exp009_shs_llm_mobility
+  cache_dir: artifacts/cache/llm_shs_agent_exp009_mobility
+  temperature: 0.2
+  max_tokens: 280
+  request_pause_seconds: 1.2
+  timeout_seconds: 120
+  force_refresh: false
+  abort_on_fallback: true
+  abort_on_auth_error: true
+mediation:
+  mask_weight: 0.25
+  adherence_weight: 0.25
+  risk_weight: 0.18
+  trust_weight: 0.12
+  isolation_weight: 0.20
+calibrated_behavioral_parameters:
+  home_risk_gain: 0.7999899745369664
+  home_adherence_gain: 0.000006242294665998763
+  school_response_gain: 0.3397708907624432
+  work_response_gain: 0.4199999999998745
+  other_response_gain: 0.5499999999992714
+  school_trust_penalty: 0.0999999999990213
+  work_trust_penalty: 0.0600000000007113
+  other_adherence_penalty: 0.08000000000008826
+  policy_mask_scale: 0.9999999999998793
+  policy_confinement_scale: 0.9999999999999875
+  policy_relaxation_scale: 0.9999999999999959
+  prevention_weight_adherence: 0.4888137265353954
+  prevention_weight_risk: 0.44057343081609185
+  prevention_weight_trust: 0.0
+  policy_bonus_baseline: -0.01999999999978661
+  policy_bonus_mask_mandate: 0.014999999999185366
+  policy_bonus_confinement: -0.0366349881192412
+  policy_bonus_risk_relaxation: -0.009999999999920158

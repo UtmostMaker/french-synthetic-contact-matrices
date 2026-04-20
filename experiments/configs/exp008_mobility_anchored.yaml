@@ -1,0 +1,16 @@
+experiment_name: exp008_mobility_anchored
+input_results_path: artifacts/outputs/exp007_shs_llm_results.json
+output_results_path: artifacts/outputs/exp008_mobility_anchored_results.json
+mobility_adjustment:
+  llm_profile_delta_weight: 0.75
+  heuristic_profile_delta_weight: 0.25
+  clip_min: 0.0
+  clip_max: 1.0
+assessment:
+  purpose: diagnostic_mobility_calibration
+  note: >-
+    This experiment is intentionally diagnostic. It anchors each regime to the
+    observed Google mobility mean, then preserves a weighted mix of LLM and
+    heuristic within-regime profile deviations. If this sharply reduces error,
+    the main failure in exp007 is the absolute regime-level mobility scale, not
+    the existence of profile differentiation itself.
