@@ -36,6 +36,7 @@ data/processed/
 # Submission bundles and ad hoc release archives
 delivery_to_utmostsenior_*/
 delivery_to_utmostsenior_*.zip
+delivery_to_martin_*/
 submission_email_minimal_*/
 submission_email_minimal_*.zip
 submission_package_roia_*/

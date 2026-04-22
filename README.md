@@ -34,7 +34,7 @@ L'objectif n'est pas de remplacer les enquêtes françaises par une boîte noire
 
 ### Résultats des agents LLM réels
 
-Avec **18 profils socio-démographiques × 6 périodes de politique sanitaire**, la première campagne archivées de profils produit déjà un gradient de politique publique lisible :
+Avec **18 profils socio-démographiques × 6 périodes de politique sanitaire**, la première campagne de profils archivés produit déjà un gradient de politique publique lisible :
 
 - Pré-pandémie : réduction de mobilité **0,09**, adhésion au masque **0,04**
 - Premier confinement : réduction de mobilité **0,71**, adhésion au masque **0,56**
@@ -58,7 +58,7 @@ La refonte récente du manuscrit ne s'arrête toutefois pas à cette première c
 ├── manuscript/       Manuscrit ROIA et figures de publication
 ├── scripts/          Points d'entrée reproductibles pour expériences et figures
 ├── src/              Package Python implémentant modèles, métriques et couches comportementales
-└── tests/            Tests unitaires et tests fumée
+└── tests/            Tests unitaires et vérifications minimales
 ```
 
 ## Reproduire les résultats principaux
@@ -71,7 +71,7 @@ source .venv/bin/activate
 pip install -e .
 ```
 
-Si l'utilisateur préfère utiliser la pile scientifique déjà présente dans le dépôt, plusieurs scripts de figures peuvent aussi être lancés directement avec `python3` depuis la racine du projet.
+Si vous préférez utiliser la pile scientifique déjà présente dans le dépôt, plusieurs scripts de figures peuvent aussi être lancés directement avec `python3` depuis la racine du projet.
 
 ### 2. Modèles statiques et optimisation
 
@@ -108,7 +108,7 @@ Si les générations réelles archivées sont déjà présentes, régénère les
 python3 scripts/generate_exp006_real_figures.py
 ```
 
-Pour relancer la génération de la première campagne de profils, définis `LLM_API_KEY`, adapte au besoin `base_url` dans `experiments/configs/exp006_llm_agents.yaml`, puis exécute :
+Pour relancer la génération de la première campagne de profils, configurez vos identifiants LLM, adaptez au besoin `base_url` dans `experiments/configs/exp006_llm_agents.yaml`, puis exécutez :
 
 ```bash
 python3 scripts/run_exp006.py
